@@ -1,37 +1,29 @@
-// theme/index.js
-import { extendTheme } from '@chakra-ui/react';
+import { extendTheme } from "@chakra-ui/react";
 
 const colors = {
   brand: {
-    primary: '#2ecc71',     // Green
-    secondary: '#ecf0f1',   // Light Gray
-    text: '#333333',        // Black
-    background: '#ffffff',  // White
+    primary: '#2ecc71',       
+    secondary: '#ffffff',    
+    background: '#ecf0f1',   
+  },
+
+  text: {
+    primary: '#333333',  
+    secondary: '#ffffff',     
+  },
+
+  status: {
+    error: '#e53e3e',         
+    success: '#38a169',     
+  },
+
+  interaction: {
+    greenHover: '#27ae60',    
   },
 };
 
-// Customizando o tema
 const theme = extendTheme({
   colors,
-  fonts: {
-    body: "'Inter', sans-serif",
-    heading: "'Poppins', sans-serif",
-  },
-  styles: {
-    global: {
-      'html, body': {
-        backgroundColor: 'brand.background',
-        color: 'brand.text',
-        padding: 0,
-        margin: 0,
-        fontFamily: 'body',
-      },
-      a: {
-        color: 'brand.primary',
-        textDecoration: 'none',
-      },
-    },
-  },
 });
 
 export default theme;
