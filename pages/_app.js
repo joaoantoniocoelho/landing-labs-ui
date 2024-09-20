@@ -1,5 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import customTheme from '../theme'
+import customTheme from '../theme/theme'
 
 function App({ Component, pageProps }) {
     return (
