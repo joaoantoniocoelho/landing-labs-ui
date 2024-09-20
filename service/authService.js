@@ -1,5 +1,19 @@
 import api from './api';
 
+export const registerUser = async (name, email, password) => {
+    try {
+        const response = await api.post('/auth/register', {
+            name: name,
+            email: email,
+            password: password
+        });
+
+        return response.data;
+    } catch {
+        throw new Error();    
+    }
+};
+
 export const login = async (email, password) => {
     try {
         const response = await api.post('/auth/login', {
@@ -18,11 +32,7 @@ export const forgotPassword = async (email) => {
         const response = await api.post('/auth/forgot-password', { email });
 
         return response.data;
-    } catch (error) {
-        if (error.response) {
-            throw new Error(error.response.data.message || 'Erro ao processar a solicitação.');
-        } else {
-            throw new Error('Erro ao conectar com o servidor.');
-        }
+    } catch {
+        throw new Error();
     }
 };
