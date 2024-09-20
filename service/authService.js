@@ -21,8 +21,6 @@ export const login = async (email, password) => {
             password,
         });
 
-        localStorage.setItem('authToken', response.token);
-
         return response.data; 
     } catch (error) {
         throw new Error();
