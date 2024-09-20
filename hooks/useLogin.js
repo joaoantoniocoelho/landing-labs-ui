@@ -24,7 +24,7 @@ export const useLogin = () => {
         router.push('/');
       }
     } catch (error) {
-      showErrorToast('Erro no login', error.message);
+      showErrorToast('Erro no login', 'Verifique os dados.');
     }
 
     setIsLoading(false);
