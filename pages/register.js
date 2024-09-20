@@ -166,6 +166,16 @@ export default function RegisterPage() {
                     >
                         Cadastrar
                     </Button>
+
+                    <Text
+                        fontSize="sm"
+                        color="brand.text"
+                        textAlign="center"
+                        _hover={{ color: 'interaction.greenHover', cursor: 'pointer' }}
+                        onClick={() => router.push('/login')}
+                    >
+                        Já possui conta? Clique para se conectar
+                    </Text>
                 </VStack>
             </Box>
         </Box>

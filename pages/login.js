@@ -137,6 +137,16 @@ export default function LoginPage() {
                     >
                         Esqueceu a senha?
                     </Text>
+
+                    <Text
+                        fontSize="sm"
+                        color="brand.text"
+                        textAlign="center"
+                        _hover={{ color: 'interaction.greenHover', cursor: 'pointer' }}
+                        onClick={() => router.push('/register')}
+                    >
+                        Não possui conta? Clique para se cadastrar
+                    </Text>
                 </VStack>
             </Box>
 
