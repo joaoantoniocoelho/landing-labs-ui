@@ -18,12 +18,12 @@ export const useLogin = () => {
             if (token) {
                 localStorage.setItem('token', token);
 
-                showSuccessToast('Login bem-sucedido', 'Você foi autenticado com sucesso.');
+                showSuccessToast('Login bem-sucedido', response.message);
 
                 router.push('/');
             }
         } catch (error) {
-            showErrorToast('Erro no login', 'Verifique os dados.');
+            showErrorToast('Erro no login', error.message);
         }
 
         setIsLoading(false);
