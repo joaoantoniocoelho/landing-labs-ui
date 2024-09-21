@@ -3,14 +3,15 @@ import customTheme from '../theme/theme';
 import Head from 'next/head';
 
 function App({ Component, pageProps }) {
-    return (
-        <ChakraProvider theme={customTheme}>
-            <Head>
-                <title>Landing Labs</title>
-            </Head>
-            <Component {...pageProps} />
-        </ChakraProvider>
-    );
+  return (
+    <ChakraProvider theme={customTheme}>
+      <Head>
+        <title>Landing Labs</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <Component {...pageProps} />
+    </ChakraProvider>
+  );
 }
 
 export default App;

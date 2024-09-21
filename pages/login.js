@@ -18,6 +18,7 @@ import ForgotPasswordModal from '@/components/ForgotPasswordModal';
 import { login } from '@/service/authService';
 import { useCustomToast } from '@/hooks/useCustomToast';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
@@ -64,95 +65,101 @@ export default function LoginPage() {
     const isFormValid = email && password && !emailError;
 
     return (
-        <Box
-            minH="100vh"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            bg="brand.secondary"
-            px={6}
-        >
+        <>
+            <Head>
+                <title>Login - Landing Labs</title>
+                <meta name="description" content="Faça login em Landing Labs para acessar suas soluções digitais." />
+            </Head>
             <Box
-                maxW="md"
-                width="full"
-                bg="white"
-                p={8}
-                borderRadius="lg"
-                boxShadow="lg"
+                minH="100vh"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                bg="brand.secondary"
+                px={6}
             >
-                <Heading as="h2" size="lg" mb={6} textAlign="center" color="brand.text">
-                    Login
-                </Heading>
+                <Box
+                    maxW="md"
+                    width="full"
+                    bg="white"
+                    p={8}
+                    borderRadius="lg"
+                    boxShadow="lg"
+                >
+                    <Heading as="h2" size="lg" mb={6} textAlign="center" color="brand.text">
+                        Login
+                    </Heading>
 
-                <VStack spacing={4} as="form" onSubmit={onSubmit}>
-                    <FormControl id="email" isInvalid={emailError}>
-                        <FormLabel color="brand.text">Email</FormLabel>
-                        <Input
-                            type="email"
-                            value={email}
-                            onChange={handleEmailChange}
-                            placeholder="Digite seu email"
-                            focusBorderColor="brand.primary"
-                        />
-                        {emailError && <Text color="red.500" fontSize="sm">Email inválido</Text>}
-                    </FormControl>
-
-                    <FormControl id="password">
-                        <FormLabel color="brand.text">Senha</FormLabel>
-                        <InputGroup>
+                    <VStack spacing={4} as="form" onSubmit={onSubmit}>
+                        <FormControl id="email" isInvalid={emailError}>
+                            <FormLabel color="brand.text">Email</FormLabel>
                             <Input
-                                type={showPassword ? 'text' : 'password'}
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Digite sua senha"
+                                type="email"
+                                value={email}
+                                onChange={handleEmailChange}
+                                placeholder="Digite seu email"
                                 focusBorderColor="brand.primary"
                             />
-                            <InputRightElement
-                                onClick={() => setShowPassword(!showPassword)}
-                                cursor="pointer"
-                                _hover={{ color: 'gray.600' }}
-                            >
-                                {showPassword ? <ViewOffIcon /> : <ViewIcon />}
-                            </InputRightElement>
-                        </InputGroup>
-                    </FormControl>
+                            {emailError && <Text color="red.500" fontSize="sm">Email inválido</Text>}
+                        </FormControl>
 
-                    <Button
-                        bg="brand.primary"
-                        color="text.secondary"
-                        width="full"
-                        mt={4}
-                        type="submit"
-                        isLoading={isLoading}
-                        isDisabled={!isFormValid}
-                        _hover={{ bg: 'interaction.greenHover' }}
-                    >
-                        Entrar
-                    </Button>
+                        <FormControl id="password">
+                            <FormLabel color="brand.text">Senha</FormLabel>
+                            <InputGroup>
+                                <Input
+                                    type={showPassword ? 'text' : 'password'}
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="Digite sua senha"
+                                    focusBorderColor="brand.primary"
+                                />
+                                <InputRightElement
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    cursor="pointer"
+                                    _hover={{ color: 'gray.600' }}
+                                >
+                                    {showPassword ? <ViewOffIcon /> : <ViewIcon />}
+                                </InputRightElement>
+                            </InputGroup>
+                        </FormControl>
 
-                    <Text
-                        fontSize="sm"
-                        color="brand.text"
-                        textAlign="center"
-                        _hover={{ color: 'interaction.greenHover', cursor: 'pointer' }}
-                        onClick={onOpen}
-                    >
-                        Esqueceu a senha?
-                    </Text>
+                        <Button
+                            bg="brand.primary"
+                            color="text.secondary"
+                            width="full"
+                            mt={4}
+                            type="submit"
+                            isLoading={isLoading}
+                            isDisabled={!isFormValid}
+                            _hover={{ bg: 'interaction.greenHover' }}
+                        >
+                            Entrar
+                        </Button>
 
-                    <Text
-                        fontSize="sm"
-                        color="brand.text"
-                        textAlign="center"
-                        _hover={{ color: 'interaction.greenHover', cursor: 'pointer' }}
-                        onClick={() => router.push('/register')}
-                    >
-                        Não possui conta? Clique para se cadastrar
-                    </Text>
-                </VStack>
+                        <Text
+                            fontSize="sm"
+                            color="brand.text"
+                            textAlign="center"
+                            _hover={{ color: 'interaction.greenHover', cursor: 'pointer' }}
+                            onClick={onOpen}
+                        >
+                            Esqueceu a senha?
+                        </Text>
+
+                        <Text
+                            fontSize="sm"
+                            color="brand.text"
+                            textAlign="center"
+                            _hover={{ color: 'interaction.greenHover', cursor: 'pointer' }}
+                            onClick={() => router.push('/register')}
+                        >
+                            Não possui conta? Clique para se cadastrar
+                        </Text>
+                    </VStack>
+                </Box>
+
+                <ForgotPasswordModal isOpen={isOpen} onClose={onClose} />
             </Box>
-
-            <ForgotPasswordModal isOpen={isOpen} onClose={onClose} />
-        </Box>
+        </>
     );
 }
