@@ -11,6 +11,7 @@ const theme = extendTheme({
             primary: '#2ecc71',
             secondary: '#fefefe',
             background: '#ecf0f1',
+            blue: '#2c3e50',
         },
         text: {
             primary: '#333333',
@@ -19,6 +20,7 @@ const theme = extendTheme({
             
         interaction: {
             greenHover: '#27ae60',
+            blueHover: '#3b5998'
         },
     },
 });
