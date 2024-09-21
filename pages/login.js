@@ -48,7 +48,7 @@ export default function LoginPage() {
         setIsLoading(true);
 
         try {
-            const data = await login(email, password)
+            const data = await login(email, password);
 
             localStorage.setItem('authToken', data.token);
             showSuccessToast(data.message);

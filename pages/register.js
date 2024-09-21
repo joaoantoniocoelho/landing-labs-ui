@@ -28,7 +28,7 @@ export default function RegisterPage() {
             const data = await registerUser(name, email, password);
             showSuccessToast(data.message);
 
-            router.push('/login')
+            router.push('/login');
         } catch (error) {
             showErrorToast(error.message);
         }

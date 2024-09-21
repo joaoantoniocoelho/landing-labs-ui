@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, FormControl, FormLabel, Input, Button, Text } from "@chakra-ui/react";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, FormControl, FormLabel, Input, Button, Text } from '@chakra-ui/react';
 import { forgotPassword } from '../service/authService'; 
 import { useCustomToast } from '../hooks/useCustomToast'; 
 import { isValidEmail } from '@/utils/emailUtils';
@@ -34,11 +34,11 @@ function ForgotPasswordModal({ isOpen, onClose }) {
         setEmail(value);
     
         if (value && !isValidEmail(value)) {
-          setEmailError(true);
+            setEmailError(true);
         } else {
-          setEmailError(false);
+            setEmailError(false);
         }
-      };
+    };
     
 
     return (
@@ -49,7 +49,7 @@ function ForgotPasswordModal({ isOpen, onClose }) {
             onClose={onClose}
         >
             <ModalOverlay />
-            <ModalContent maxW={{ base: "90%", sm: "80%", md: "40%", lg: "30%" }}>
+            <ModalContent maxW={{ base: '90%', sm: '80%', md: '40%', lg: '30%' }}>
                 <ModalHeader>Recuperar Senha</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody pb={6}>
@@ -66,7 +66,7 @@ function ForgotPasswordModal({ isOpen, onClose }) {
                             color="red.500" 
                             fontSize="sm" 
                             mt={2} 
-                            visibility={emailError ? "visible" : "hidden"} // Espaço reservado mesmo quando não há erro
+                            visibility={emailError ? 'visible' : 'hidden'} // Espaço reservado mesmo quando não há erro
                             height="20px" // Altura fixa para manter o espaço
                         >
                             Email inválido

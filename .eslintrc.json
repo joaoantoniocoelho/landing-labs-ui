@@ -5,18 +5,34 @@
     "node": true
   },
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:react/recommended",  // Adiciona regras do React
+    "plugin:jsx-a11y/recommended" // Acessibilidade em JSX
   ],
   "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true // Habilita a sintaxe JSX
+    },
     "ecmaVersion": 12,
     "sourceType": "module"
   },
+  "plugins": [
+    "react",    // Adiciona o plugin do React
+    "jsx-a11y"  // Adiciona o plugin de acessibilidade para JSX
+  ],
   "rules": {
     "indent": ["error", 4],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "no-console": "warn",
-    "no-unused-vars": ["warn", { "vars": "all", "args": "none" }]
+    "no-unused-vars": ["warn", { "vars": "all", "args": "none" }],
+    "react/react-in-jsx-scope": "off",  // Não é necessário importar React no Next.js
+    "react/prop-types": "off"           // Opcional: desabilita o warning de prop-types
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // Detecta a versão do React automaticamente
+    }
   }
 }
