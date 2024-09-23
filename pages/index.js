@@ -9,15 +9,22 @@ import {
     Icon,
     HStack,
     Link,
-    Accordion,
-    AccordionItem,
-    AccordionButton,
-    AccordionPanel,
-    AccordionIcon
+    keyframes,
 } from '@chakra-ui/react';
-import { FaCogs, FaPaintBrush, FaRocket, FaCheckCircle } from 'react-icons/fa';
+import { FaCogs, FaPaintBrush, FaRocket, FaCheckCircle, FaHeart } from 'react-icons/fa';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import FAQ from '@/components/FAQComponent';
+
+const fadeIn = keyframes`
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+`;
+
+const bounce = keyframes`
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+`;
 
 export default function Home() {
     const router = useRouter();
@@ -105,54 +112,64 @@ export default function Home() {
                 </Container>
             </Box>
 
-            {/* Hero section */}
+            {/* Hero section with fade-in animation */}
             <Box
                 id="inicio"
                 minH="100vh"
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
-                bg="brand.primary"
+                bg="brand.primary" // Você pode alterar para um tom de verde mais suave ou usar uma variável de Tailwind aqui
                 pt={16}
+                animation={`${fadeIn} 1s ease-in-out`}
             >
-                <VStack spacing={6} textAlign="center" color="white">
+                <VStack spacing={8} textAlign="center" color="white">
                     <Heading
                         as="h1"
                         fontSize={{ base: '4xl', md: '6xl', lg: '7xl' }}
                         textShadow="2px 2px 8px rgba(0, 0, 0, 0.3)"
+                        animation={`${fadeIn} 1.2s ease-in-out`}
+                        fontWeight="extrabold"
                     >
-                        Coloque Seu Negócio Online em Minutos
+                    Coloque Seu Negócio Online em Minutos
                     </Heading>
+
                     <Text
-                        fontSize="xl"
-                        maxW="xl"
+                        fontSize={{ base: 'lg', md: 'xl', lg: '2xl' }}
+                        maxW={{ base: '90%', md: '90%', lg: '85%' }}
                         color="text.secondary"
-                        fontWeight="bold"
+                        fontWeight="medium"
+                        lineHeight="1.75"
                         textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)"
+                        animation={`${fadeIn} 1.4s ease-in-out`}
                     >
-                        Com o Page Express, crie um site profissional de maneira rápida e descomplicada, sem precisar de conhecimento técnico.
+                    Com o Page Express, crie um site profissional de maneira rápida e descomplicada, 
+                    sem precisar de conhecimento técnico.
                     </Text>
 
                     <Button
                         size="lg"
-                        variant="solid"
-                        onClick={() => router.push('/register')}
-                        px={8}
-                        py={6}
-                        fontSize="3xl"
-                        bg="#2c3e50"
-                        color="white"
+                        borderRadius="full"
+                        px={12}
+                        py={8} 
+                        fontSize="2xl"
+                        bg="#2c3e50"  // Cor de fundo pode ser ajustada para algo mais harmonioso
+                        color="text.secondary"
                         _hover={{
-                            bg: 'interaction.blueHover',
+                            bg: '#34495E',
+                            transform: 'scale(1.05)',
+                            transition: 'transform 0.2s ease',
                         }}
                         shadow="lg"
+                        animation={`${fadeIn} 1.6s ease-in-out`}
+                        onClick={() => router.push('/register')}
                     >
-                        Comece Agora
+                    Comece Agora
                     </Button>
                 </VStack>
             </Box>
 
-            {/* Features */}
+            {/* Features with bounce animation on icons */}
             <Container id="funcionalidades" maxW="container.lg" py={10} px={8}>
                 <Heading as="h2" size="xl" textAlign="center" color="text.primary" h="8rem">
                     Funcionalidades Principais
@@ -164,7 +181,7 @@ export default function Home() {
                         boxShadow="lg"
                         bg="white"
                     >
-                        <Icon as={FaPaintBrush} w={10} h={10} color="brand.primary" />
+                        <Icon as={FaPaintBrush} w={10} h={10} color="brand.primary" animation={`${bounce} 2s infinite`} />
                         <Heading as="h3" size="md" color="text.primary" mt={4}>
                             Personalização Fácil
                         </Heading>
@@ -180,7 +197,7 @@ export default function Home() {
                         boxShadow="lg"
                         bg="white"
                     >
-                        <Icon as={FaCogs} w={10} h={10} color="brand.primary" />
+                        <Icon as={FaCogs} w={10} h={10} color="brand.primary" animation={`${bounce} 2s infinite`} />
                         <Heading as="h3" size="md" color="text.primary" mt={4}>
                             Otimizado para Busca
                         </Heading>
@@ -196,7 +213,7 @@ export default function Home() {
                         boxShadow="lg"
                         bg="white"
                     >
-                        <Icon as={FaRocket} w={10} h={10} color="brand.primary" />
+                        <Icon as={FaRocket} w={10} h={10} color="brand.primary" animation={`${bounce} 2s infinite`} />
                         <Heading as="h3" size="md" color="text.primary" mt={4}>
                             Publicação Imediata
                         </Heading>
@@ -216,161 +233,52 @@ export default function Home() {
                 textAlign="center"
                 bg="brand.primary"
                 boxShadow="lg"
+                animation={`${fadeIn} 2s ease-in-out`}
             >
                 <Heading as="h2" size="xl" mb={4} color="text.secondary">
                     Preço Acessível
                 </Heading>
-                <Text fontSize="2xl" mb={6} color="text.secondary">
+                <Text
+                    fontSize="2xl"
+                    mb={6}
+                    color="text.secondary"
+                    maxW={{ base: '90%', md: '85%', lg: '70%' }}  // Diferentes larguras para mobile (base) e desktop (md e lg)
+                    mx="auto"  // Para manter o texto centralizado horizontalmente
+                    textAlign="center"  // Centraliza o texto dentro da largura definida
+                >
                     Apenas <strong>R$99</strong> para colocar seu negócio online.
                 </Text>
+
                 <Button
                     size="lg"
-                    variant="solid"
-                    onClick={() => router.push('/register')}
-                    px={8}
-                    py={6}
-                    fontSize="3xl"
-                    bg="brand.blue"
+                    borderRadius="full"
+                    px={12}
+                    py={8} 
+                    fontSize="2xl"
+                    bg="#2c3e50"  // Cor de fundo pode ser ajustada para algo mais harmonioso
                     color="text.secondary"
                     _hover={{
-                        bg: 'interaction.blueHover',
+                        bg: '#34495E',
+                        transform: 'scale(1.05)',
+                        transition: 'transform 0.2s ease',
                     }}
                     shadow="lg"
+                    animation={`${fadeIn} 1.6s ease-in-out`}
+                    onClick={() => router.push('/register')}
                 >
                     Quero Meu Site
                 </Button>
             </Box>
 
-            {/* Benefits */}
-            <Container id="beneficios" maxW="container.lg" py={10} px={8} textAlign="center">
-                <Heading as="h2" size="xl" mb={8} color="text.primary" h="8rem">
-                    Por que Escolher o Page Express?
-                </Heading>
-                <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-                    <Box
-                        p={6}
-                        borderRadius="lg"
-                        boxShadow="lg"
-                        bg="white"
-                    >
-                        <Icon as={FaCheckCircle} w={10} h={10} color="brand.primary" />
-                        <Heading as="h3" size="md" color="text.primary" mt={4}>
-                            Simplicidade
-                        </Heading>
-                        <Text mt={4} color="text.primary">
-                            Crie seu site de forma intuitiva, sem complicações ou etapas desnecessárias.
-                        </Text>
-                    </Box>
-
-                    <Box
-                        p={6}
-                        borderRadius="lg"
-                        boxShadow="lg"
-                        bg="white"
-                    >
-                        <Icon as={FaCheckCircle} w={10} h={10} color="brand.primary" />
-                        <Heading as="h3" size="md" color="text.primary" mt={4}>
-                            Economia
-                        </Heading>
-                        <Text mt={4} color="text.primary">
-                            Tenha um site profissional por um preço que cabe no seu bolso, sem custos mensais.
-                        </Text>
-                    </Box>
-                </SimpleGrid>
-            </Container>
-
             {/* FAQ Section */}
             <Container id="faq" maxW="container.lg" py={10} px={8}>
-                <Heading as="h2" size="xl" textAlign="center" color="text.primary" mb={8}>
-                    Perguntas Frequentes
-                </Heading>
-
-                <Accordion allowToggle>
-                    {/* Pergunta 1 */}
-                    <AccordionItem>
-                        <AccordionButton>
-                            <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
-                                Como o Page Express funciona?
-                            </Box>
-                            <AccordionIcon />
-                        </AccordionButton>
-                        <AccordionPanel pb={4} color="text.primary">
-                            O Page Express permite que você crie um site profissional de forma rápida e fácil. Você
-                            pode personalizar o conteúdo do seu site (textos, imagens, cores) usando um editor
-                            intuitivo. Após a criação, seu site estará online em poucos minutos, sem necessidade de
-                            conhecimento técnico.
-                        </AccordionPanel>
-                    </AccordionItem>
-
-                    {/* Pergunta 2 */}
-                    <AccordionItem>
-                        <AccordionButton>
-                            <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
-                                Eu preciso de um subdomínio personalizado?
-                            </Box>
-                            <AccordionIcon />
-                        </AccordionButton>
-                        <AccordionPanel pb={4} color="text.primary">
-                            Não é necessário! Usamos uma estrutura de subdiretórios, como pageexpress.io/seunome,
-                            para facilitar e otimizar o SEO do seu site. Isso ajuda a consolidar a autoridade do
-                            domínio principal e melhora o ranqueamento nos mecanismos de busca. Além disso, não há
-                            complicações com a configuração de subdomínios.
-                        </AccordionPanel>
-                    </AccordionItem>
-
-                    {/* Pergunta 3 */}
-                    <AccordionItem>
-                        <AccordionButton>
-                            <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
-                                Posso usar meu próprio domínio?
-                            </Box>
-                            <AccordionIcon />
-                        </AccordionButton>
-                        <AccordionPanel pb={4} color="text.primary">
-                            Sim! Oferecemos a opção de mapear um domínio próprio para seu site, como
-                            seunegocio.com. Dessa forma, seus clientes poderão acessar o site diretamente com o seu
-                            domínio personalizado.
-                        </AccordionPanel>
-                    </AccordionItem>
-
-                    {/* Pergunta 4 */}
-                    <AccordionItem>
-                        <AccordionButton>
-                            <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
-                                Meu site será otimizado para SEO?
-                            </Box>
-                            <AccordionIcon />
-                        </AccordionButton>
-                        <AccordionPanel pb={4} color="text.primary">
-                            Sim! Todos os sites criados pelo Page Express são otimizados para motores de busca. Isso
-                            inclui meta tags personalizadas, URLs amigáveis e dados estruturados para ajudar seu
-                            negócio a ser encontrado online de forma eficaz.
-                        </AccordionPanel>
-                    </AccordionItem>
-
-                    {/* Pergunta 5 */}
-                    <AccordionItem>
-                        <AccordionButton>
-                            <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
-                                Qual o custo para criar meu site?
-                            </Box>
-                            <AccordionIcon />
-                        </AccordionButton>
-                        <AccordionPanel pb={4} color="text.primary">
-                            O custo para criar seu site no Page Express é de R$99, uma taxa única que inclui todas
-                            as funcionalidades necessárias para ter seu site online e otimizado.
-                        </AccordionPanel>
-                    </AccordionItem>
-                </Accordion>
+                <FAQ />
             </Container>
 
+            {/* Footer with heart animation */}
             <Box bg="brand.primary" py={6} textAlign="center">
-                <Text
-                    color="text.secondary"
-                    fontWeight="bold"
-                    textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)"
-                >
-                    &copy; {new Date().getFullYear()} Page Express. Todos os direitos reservados.
+                <Text color="text.secondary" fontWeight="bold" textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)">
+                    Feito com <FaHeart style={{ color: '#fefefe', display: 'inline-block', marginLeft: '5px', marginRight: '5px', animation: `${bounce} 1.5s infinite` }} /> por Page Express
                 </Text>
             </Box>
         </>
