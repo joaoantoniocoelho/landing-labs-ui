@@ -1,5 +1,5 @@
 export async function getServerSideProps({ res }) {
-    const baseUrl = 'https://page-express-ui.vercel.app/';
+    const baseUrl = 'https://pageexxpress.io/';
   
     const robotsTxt = `
       User-agent: *
