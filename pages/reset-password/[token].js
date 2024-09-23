@@ -85,8 +85,8 @@ export default function RegisterPage() {
     return (
         <>
             <Head>
-                <title>Alterar senha - Landing Labs</title>
-                <meta name="description" content="Altere sua senha em Landing Labs." />
+                <title>Alterar senha - Page Express</title>
+                <meta name="description" content="Altere sua senha em Page Express." />
             </Head>
             <Box
                 minH="100vh"

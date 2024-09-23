@@ -71,8 +71,8 @@ export default function RegisterPage() {
     return (
         <>
             <Head>
-                <title>Registro - Landing Labs</title>
-                <meta name="description" content="Faça login em Landing Labs para acessar suas soluções digitais." />
+                <title>Registro - Page Express</title>
+                <meta name="description" content="Faça login em Page Express para acessar suas soluções digitais." />
             </Head>
             <Box
                 minH="100vh"

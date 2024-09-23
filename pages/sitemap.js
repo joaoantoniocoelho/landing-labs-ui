@@ -1,5 +1,5 @@
 export async function getServerSideProps({ res }) {
-    const baseUrl = 'https://www.landinglabs.io'; 
+    const baseUrl = 'https://www.pageexpress.io'; 
 
     const staticPages = ['/', '/login', '/register'];
   

@@ -16,12 +16,12 @@ const nextConfig = {
     },
   
     images: {
-        domains: ['www.landinglabs.com'], // Permitir o uso de imagens do seu domínio
+        domains: ['https://page-express-ui.vercel.app'],
     },
   
     compress: true,
   
-    swcMinify: true, // Usa o minificador SWC para melhorar o tempo de build e a performance do site
+    swcMinify: true,
 };
   
 export default nextConfig;
