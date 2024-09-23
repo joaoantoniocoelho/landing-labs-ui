@@ -1,5 +1,5 @@
 export async function getServerSideProps({ res }) {
-    const baseUrl = 'https://www.landinglabs.com';  // Substitua pelo domínio real do seu site
+    const baseUrl = 'https://landing-labs-ui.vercel.app/';
   
     const robotsTxt = `
       User-agent: *
@@ -7,7 +7,6 @@ export async function getServerSideProps({ res }) {
       Sitemap: ${baseUrl}/sitemap.xml
     `;
   
-    // Enviar o conteúdo do robots.txt como resposta
     res.setHeader('Content-Type', 'text/plain');
     res.write(robotsTxt);
     res.end();
