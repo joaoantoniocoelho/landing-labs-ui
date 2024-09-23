@@ -36,3 +36,25 @@ export const forgotPassword = async (email) => {
         throw new Error();
     }
 };
+
+export const resetPassword = async (token, password) => {
+    try {
+        const response = await api.post(`/auth/reset-password/${token}`, {
+            newPassword: password
+        });
+
+        return response.data;
+    } catch (error) {
+        throw new Error();
+    }
+};
+
+export const validateToken = async (token) => {
+    try {
+        const response = await api.get(`/auth/validate-token/${token}`);
+
+        return response.data;
+    } catch (error) {
+        throw new Error();
+    }
+};

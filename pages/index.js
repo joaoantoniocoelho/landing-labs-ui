@@ -18,12 +18,6 @@ import { FaCheckCircle } from 'react-icons/fa';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
   
-export async function getStaticProps() {
-    return {
-        props: {},
-    };
-}
-  
 export default function Home() {
     const router = useRouter();
   
@@ -46,12 +40,6 @@ export default function Home() {
                 />
                 <meta property="og:url" content="https://www.landinglabs.com" />
                 <meta property="og:image" content="/og-image.png" />
-  
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-                    rel="stylesheet"
-                />
             </Head>
   
             {/* Navigation Header */}
