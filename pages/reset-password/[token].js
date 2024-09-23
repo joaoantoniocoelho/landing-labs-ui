@@ -131,7 +131,7 @@ export default function RegisterPage() {
                                     Senha alterada com sucesso!
                                 </Text>
                                 <Link href="/login" color="brand.primary" fontSize="lg">
-                                    Clique aqui para fazer login
+                                    Clique para fazer login
                                 </Link>
                             </VStack>
                         </Center>
