@@ -24,21 +24,21 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>Landing Labs - Crie Seu Site em Minutos</title>
+                <title>Page Express - Crie Seu Site em Minutos</title>
                 <meta
                     name="description"
-                    content="Com o Landing Labs, você cria um site profissional para o seu negócio de forma rápida e fácil, sem precisar de conhecimento técnico."
+                    content="Com o Page Express, você cria um site profissional para o seu negócio de forma rápida e fácil, sem precisar de conhecimento técnico."
                 />
                 <meta
                     name="keywords"
                     content="criação de sites, site profissional, presença online, pequenos negócios, site fácil"
                 />
-                <meta property="og:title" content="Landing Labs - Crie Seu Site em Minutos" />
+                <meta property="og:title" content="Page Express - Crie Seu Site em Minutos" />
                 <meta
                     property="og:description"
-                    content="Com o Landing Labs, você cria um site profissional para o seu negócio de forma rápida e fácil, sem precisar de conhecimento técnico."
+                    content="Com o Page Express, você cria um site profissional para o seu negócio de forma rápida e fácil, sem precisar de conhecimento técnico."
                 />
-                <meta property="og:url" content="https://landing-labs-ui.vercel.app/" />
+                <meta property="og:url" content="https://page-express-ui.vercel.app/" />
                 <meta property="og:image" content="/og-image.png" />
             </Head>
   
@@ -61,7 +61,7 @@ export default function Home() {
                             cursor="pointer"
                             onClick={() => router.push('/')}
                         >
-                Landing Labs
+                Page Express
                         </Heading>
                         <HStack as="nav" spacing={6}>
                             <Link
@@ -122,7 +122,7 @@ export default function Home() {
                         fontWeight="bold"
                         textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)"
                     >
-              Com o Landing Labs, crie um site profissional de maneira rápida e descomplicada, sem precisar de conhecimento técnico.
+              Com o Page Express, crie um site profissional de maneira rápida e descomplicada, sem precisar de conhecimento técnico.
                     </Text>
   
                     <Button
@@ -236,7 +236,7 @@ export default function Home() {
             {/* Benefits */}
             <Container id="beneficios" maxW="container.lg" py={10} px={8} textAlign="center">
                 <Heading as="h2" size="xl" mb={8} color="text.primary" h="8rem" >  
-            Por que Escolher o Landing Labs?
+            Por que Escolher o Page Express?
                 </Heading>
                 <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                     <Box
@@ -277,7 +277,7 @@ export default function Home() {
                     fontWeight="bold"
                     textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)"
                 >
-              &copy; {new Date().getFullYear()} Landing Labs. Todos os direitos reservados.
+              &copy; {new Date().getFullYear()} Page Express. Todos os direitos reservados.
                 </Text>
             </Box>
         </>

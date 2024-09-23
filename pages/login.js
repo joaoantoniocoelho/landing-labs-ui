@@ -67,8 +67,8 @@ export default function LoginPage() {
     return (
         <>
             <Head>
-                <title>Login - Landing Labs</title>
-                <meta name="description" content="Faça login em Landing Labs para acessar suas soluções digitais." />
+                <title>Login - Page Express</title>
+                <meta name="description" content="Faça login em Page Express para acessar suas soluções digitais." />
             </Head>
             <Box
                 minH="100vh"

@@ -1,5 +1,5 @@
 export async function getServerSideProps({ res }) {
-    const baseUrl = 'https://landing-labs-ui.vercel.app/';
+    const baseUrl = 'https://page-express-ui.vercel.app/';
   
     const robotsTxt = `
       User-agent: *

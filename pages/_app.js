@@ -7,7 +7,7 @@ function App({ Component, pageProps }) {
     return (
         <ChakraProvider theme={customTheme}>
             <Head>
-                <title>Landing Labs</title>
+                <title>Page Express</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
             <Component {...pageProps} />
