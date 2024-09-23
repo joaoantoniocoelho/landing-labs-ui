@@ -1,5 +1,5 @@
 export async function getServerSideProps({ res }) {
-    const baseUrl = 'https://pageexxpress.io/';
+    const baseUrl = 'https://pageexpress.io/';
   
     const robotsTxt = `
       User-agent: *
