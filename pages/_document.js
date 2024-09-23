@@ -10,7 +10,7 @@ export default function Document() {
                 <meta name="author" content="Landing Labs" />
                 <meta property="og:title" content="Landing Labs - A revolução digital" />
                 <meta property="og:description" content="Landing Labs é a sua plataforma de soluções digitais inovadoras." />
-                <meta property="og:url" content="https://www.landinglabs.com" />
+                <meta property="og:url" content="https://landing-labs-ui.vercel.app/" />
                 <meta property="og:image" content="/og-image.png" />
                 <meta property="og:locale" content="pt_BR" />
                 <meta property="og:type" content="website" />

@@ -38,7 +38,7 @@ export default function Home() {
                     property="og:description"
                     content="Com o Landing Labs, você cria um site profissional para o seu negócio de forma rápida e fácil, sem precisar de conhecimento técnico."
                 />
-                <meta property="og:url" content="https://www.landinglabs.com" />
+                <meta property="og:url" content="https://landing-labs-ui.vercel.app/" />
                 <meta property="og:image" content="/og-image.png" />
             </Head>
   
