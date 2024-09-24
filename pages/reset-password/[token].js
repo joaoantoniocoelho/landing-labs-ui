@@ -93,13 +93,13 @@ export default function RegisterPage() {
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
-                bg="brand.secondary"
+                bg="brand.background"
                 px={6}
             >
                 <Box
                     maxW="md"
                     width="full"
-                    bg="white"
+                    bg="brand.whiteBackground"
                     p={8}
                     borderRadius="lg"
                     boxShadow="lg"
@@ -116,6 +116,7 @@ export default function RegisterPage() {
                                     bg="brand.primary"
                                     color="text.secondary"
                                     onClick={onOpen}
+                                    borderRadius="full"
                                     _hover={{ bg: 'interaction.greenHover' }} 
                                 >
                                     Solicitar nova senha
@@ -184,6 +185,7 @@ export default function RegisterPage() {
                                     bg="brand.primary"
                                     color="text.secondary"
                                     width="full"
+                                    borderRadius="full"
                                     type="submit"
                                     isDisabled={!isFormValid}
                                     _hover={{ bg: 'interaction.greenHover' }}

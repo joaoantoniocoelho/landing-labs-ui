@@ -13,7 +13,8 @@ import {
     AccordionItem,
     AccordionButton,
     AccordionPanel,
-    AccordionIcon
+    AccordionIcon,
+    useBreakpointValue
 } from '@chakra-ui/react';
 import { FaCogs, FaPaintBrush, FaRocket, FaCheckCircle } from 'react-icons/fa';
 import Head from 'next/head';
@@ -49,7 +50,7 @@ export default function Home() {
                 position="fixed"
                 top="0"
                 width="100%"
-                bg="white"
+                bg="brand.background"
                 boxShadow="md"
                 zIndex="1000"
             >
@@ -115,7 +116,7 @@ export default function Home() {
                 bg="brand.primary"
                 pt={16}
             >
-                <VStack spacing={6} textAlign="center" color="white">
+                <VStack spacing={6} textAlign="center" color="text.secondary">
                     <Heading
                         as="h1"
                         fontSize={{ base: '4xl', md: '6xl', lg: '7xl' }}
@@ -126,7 +127,6 @@ export default function Home() {
                     <Text
                         fontSize="xl"
                         maxW="xl"
-                        color="text.secondary"
                         fontWeight="bold"
                         textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)"
                     >
@@ -139,11 +139,12 @@ export default function Home() {
                         onClick={() => router.push('/register')}
                         px={8}
                         py={6}
+                        borderRadius="full"
                         fontSize="3xl"
-                        bg="#2c3e50"
-                        color="white"
+                        bg="brand.button"
+                        color="text.secondary"
                         _hover={{
-                            bg: 'interaction.blueHover',
+                            bg: 'interaction.purpleHover',
                         }}
                         shadow="lg"
                     >
@@ -162,7 +163,7 @@ export default function Home() {
                         p={6}
                         borderRadius="lg"
                         boxShadow="lg"
-                        bg="white"
+                        bg="brand.background"
                     >
                         <Icon as={FaPaintBrush} w={10} h={10} color="brand.primary" />
                         <Heading as="h3" size="md" color="text.primary" mt={4}>
@@ -178,7 +179,7 @@ export default function Home() {
                         p={6}
                         borderRadius="lg"
                         boxShadow="lg"
-                        bg="white"
+                        bg="brand.background"
                     >
                         <Icon as={FaCogs} w={10} h={10} color="brand.primary" />
                         <Heading as="h3" size="md" color="text.primary" mt={4}>
@@ -194,7 +195,7 @@ export default function Home() {
                         p={6}
                         borderRadius="lg"
                         boxShadow="lg"
-                        bg="white"
+                        bg="brand.background"
                     >
                         <Icon as={FaRocket} w={10} h={10} color="brand.primary" />
                         <Heading as="h3" size="md" color="text.primary" mt={4}>
@@ -226,14 +227,15 @@ export default function Home() {
                 <Button
                     size="lg"
                     variant="solid"
+                    borderRadius="full"
                     onClick={() => router.push('/register')}
                     px={8}
                     py={6}
                     fontSize="3xl"
-                    bg="brand.blue"
+                    bg="brand.button"
                     color="text.secondary"
                     _hover={{
-                        bg: 'interaction.blueHover',
+                        bg: 'interaction.purpleHover',
                     }}
                     shadow="lg"
                 >
@@ -251,7 +253,7 @@ export default function Home() {
                         p={6}
                         borderRadius="lg"
                         boxShadow="lg"
-                        bg="white"
+                        bg="brand.background"
                     >
                         <Icon as={FaCheckCircle} w={10} h={10} color="brand.primary" />
                         <Heading as="h3" size="md" color="text.primary" mt={4}>
@@ -266,7 +268,7 @@ export default function Home() {
                         p={6}
                         borderRadius="lg"
                         boxShadow="lg"
-                        bg="white"
+                        bg="brand.background"
                     >
                         <Icon as={FaCheckCircle} w={10} h={10} color="brand.primary" />
                         <Heading as="h3" size="md" color="text.primary" mt={4}>

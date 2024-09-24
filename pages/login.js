@@ -75,24 +75,24 @@ export default function LoginPage() {
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
-                bg="brand.secondary"
+                bg="brand.background"  
                 px={6}
             >
                 <Box
                     maxW="md"
                     width="full"
-                    bg="white"
+                    bg="brand.whiteBackground"  
                     p={8}
                     borderRadius="lg"
                     boxShadow="lg"
                 >
-                    <Heading as="h2" size="lg" mb={6} textAlign="center" color="brand.text">
+                    <Heading as="h2" size="lg" mb={6} textAlign="center" color="text.primary">
                         Login
                     </Heading>
 
                     <VStack spacing={4} as="form" onSubmit={onSubmit}>
                         <FormControl id="email" isInvalid={emailError}>
-                            <FormLabel color="brand.text">Email</FormLabel>
+                            <FormLabel color="text.primary">Email</FormLabel>
                             <Input
                                 type="email"
                                 value={email}
@@ -104,7 +104,7 @@ export default function LoginPage() {
                         </FormControl>
 
                         <FormControl id="password">
-                            <FormLabel color="brand.text">Senha</FormLabel>
+                            <FormLabel color="text.primary">Senha</FormLabel>
                             <InputGroup>
                                 <Input
                                     type={showPassword ? 'text' : 'password'}
@@ -129,18 +129,19 @@ export default function LoginPage() {
                             width="full"
                             mt={4}
                             type="submit"
+                            borderRadius="full"
                             isLoading={isLoading}
                             isDisabled={!isFormValid}
-                            _hover={{ bg: 'interaction.greenHover' }}
+                            _hover={{ bg: 'interaction.purpleHover' }}
                         >
                             Entrar
                         </Button>
 
                         <Text
                             fontSize="sm"
-                            color="brand.text"
+                            color="text.primary"
                             textAlign="center"
-                            _hover={{ color: 'interaction.greenHover', cursor: 'pointer' }}
+                            _hover={{ color: 'interaction.purpleHover', cursor: 'pointer' }}
                             onClick={onOpen}
                         >
                             Esqueceu a senha?
@@ -148,9 +149,9 @@ export default function LoginPage() {
 
                         <Text
                             fontSize="sm"
-                            color="brand.text"
+                            color="text.primary"
                             textAlign="center"
-                            _hover={{ color: 'interaction.greenHover', cursor: 'pointer' }}
+                            _hover={{ color: 'interaction.purpleHover', cursor: 'pointer' }}
                             onClick={() => router.push('/register')}
                         >
                             Não possui conta? Clique para se cadastrar

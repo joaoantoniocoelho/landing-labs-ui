@@ -1,4 +1,15 @@
-import { Box, Button, Input, FormControl, FormLabel, Heading, VStack, Text, InputGroup, InputRightElement } from '@chakra-ui/react';
+import {
+    Box,
+    Button,
+    Input,
+    FormControl,
+    FormLabel,
+    Heading,
+    VStack,
+    Text,
+    InputGroup,
+    InputRightElement
+} from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { isValidEmail } from '@/utils/emailUtils';
@@ -20,14 +31,12 @@ export default function RegisterPage() {
     const { showSuccessToast, showErrorToast } = useCustomToast();
     const router = useRouter();
 
-    
     const onSubmit = async (e) => {
         e.preventDefault();
 
         try {
             const data = await registerUser(name, email, password);
             showSuccessToast(data.message);
-
             router.push('/login');
         } catch (error) {
             showErrorToast(error.message);
@@ -79,24 +88,24 @@ export default function RegisterPage() {
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
-                bg="brand.secondary"
+                bg="brand.background"
                 px={6}
             >
                 <Box
                     maxW="md"
                     width="full"
-                    bg="white"
+                    bg="brand.whiteBackground"
                     p={8}
                     borderRadius="lg"
                     boxShadow="lg"
                 >
-                    <Heading as="h2" size="lg" mb={6} textAlign="center" color="brand.text">
+                    <Heading as="h2" size="lg" mb={6} textAlign="center" color="text.primary">
                         Cadastro
                     </Heading>
 
                     <VStack spacing={4} as="form" onSubmit={onSubmit}>
                         <FormControl id="name">
-                            <FormLabel color="brand.text">Nome</FormLabel>
+                            <FormLabel color="text.primary">Nome</FormLabel>
                             <Input
                                 type="text"
                                 value={name}
@@ -107,7 +116,7 @@ export default function RegisterPage() {
                         </FormControl>
 
                         <FormControl id="email" isInvalid={emailError}>
-                            <FormLabel color="brand.text">Email</FormLabel>
+                            <FormLabel color="text.primary">Email</FormLabel>
                             <Input
                                 type="email"
                                 value={email}
@@ -119,7 +128,7 @@ export default function RegisterPage() {
                         </FormControl>
 
                         <FormControl id="password" isInvalid={passwordLengthError}>
-                            <FormLabel color="brand.text">Senha</FormLabel>
+                            <FormLabel color="text.primary">Senha</FormLabel>
                             <InputGroup>
                                 <Input
                                     type={showPassword ? 'text' : 'password'}
@@ -140,7 +149,7 @@ export default function RegisterPage() {
                         </FormControl>
 
                         <FormControl id="confirmPassword" isInvalid={passwordMatchError}>
-                            <FormLabel color="brand.text">Confirme sua senha</FormLabel>
+                            <FormLabel color="text.primary">Confirme sua senha</FormLabel>
                             <InputGroup>
                                 <Input
                                     type={showPassword ? 'text' : 'password'}
@@ -161,23 +170,23 @@ export default function RegisterPage() {
                         </FormControl>
 
                         <Button
-                            colorScheme="green"
                             bg="brand.primary"
-                            color="white"
+                            color="text.secondary"
                             width="full"
                             mt={4}
                             type="submit"
+                            borderRadius="full"
                             isDisabled={!isFormValid}
-                            _hover={{ bg: 'interaction.greenHover' }}
+                            _hover={{ bg: 'interaction.purpleHover' }}
                         >
                             Cadastrar
                         </Button>
 
                         <Text
                             fontSize="sm"
-                            color="brand.text"
+                            color="text.primary"
                             textAlign="center"
-                            _hover={{ color: 'interaction.greenHover', cursor: 'pointer' }}
+                            _hover={{ color: 'interaction.purpleHover', cursor: 'pointer' }}
                             onClick={() => router.push('/login')}
                         >
                             Já possui conta? Clique para se conectar
