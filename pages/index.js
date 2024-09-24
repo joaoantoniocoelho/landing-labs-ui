@@ -357,8 +357,12 @@ export default function Home() {
             </Container>
 
             <Box bg="brand.primary" py={6} textAlign="center">
-                <Text color="text.secondary" fontWeight="bold" textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)">
-                    Feito com{' '} <Box as={FaHeart} color="red" boxSize={['16px', '20px', '24px']} />{' '} por Page Labs. Todos os direitos reservados.
+                <Text
+                    color="text.secondary"
+                    fontWeight="bold"
+                    textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)"
+                >
+                    &copy; {new Date().getFullYear()} Page Express. Todos os direitos reservados.
                 </Text>
             </Box>
         </>
