@@ -126,7 +126,7 @@ export default function Home() {
                         fontSize={{ base: '4xl', md: '6xl', lg: '7xl' }}
                         textShadow="2px 2px 8px rgba(0, 0, 0, 0.3)"
                     >
-                        Coloque Seu Negócio Online em Minutos
+                        Cre sua Landing Page profissional em minutos
                     </Heading>
                     <Text
                         fontSize="xl"
@@ -135,7 +135,7 @@ export default function Home() {
                         textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)"
                         px={{ base: 4, md: 0 }}
                     >
-                        Com o Page Express, crie um site profissional de maneira rápida e descomplicada, sem precisar de conhecimento técnico.
+                        Construa páginas profissionais com rapidez e facilidade. Foco em resultados, sem complicação.
                     </Text>
 
                     <Button
