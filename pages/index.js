@@ -15,7 +15,7 @@ import {
     AccordionPanel,
     AccordionIcon,
 } from '@chakra-ui/react';
-import { FaCogs, FaPaintBrush, FaRocket, FaCheckCircle } from 'react-icons/fa';
+import { FaCogs, FaPaintBrush, FaRocket, FaCheckCircle, FaHeart } from 'react-icons/fa';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
@@ -356,15 +356,15 @@ export default function Home() {
                 </Accordion>
             </Container>
 
-            <Box bg="brand.primary" py={6} textAlign="center">
-                <Text
-                    color="text.secondary"
-                    fontWeight="bold"
-                    textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)"
-                >
-                    Feito com &lt;3 por Page Labs. Todos os direitos reservados.
-                </Text>
-            </Box>
+          <Box bg="brand.primary" py={6} textAlign="center">
+            <Text
+              color="text.secondary"
+              fontWeight="bold"
+              textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)"
+            >
+              Feito com <FaHeart color="red" /> por Page Labs. Todos os direitos reservados.
+            </Text>
+          </Box>
         </>
     );
 }
