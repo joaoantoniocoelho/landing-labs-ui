@@ -119,7 +119,7 @@ export default function Home() {
                     spacing={6}
                     textAlign="center"
                     color="text.secondary"
-                    maxW={{ base: '90%', md: '70%', lg: '50%' }} // Ajuste de largura responsivo
+                    maxW={{ base: '90%', md: '70%', lg: '50%' }}
                 >
                     <Heading
                         as="h1"
@@ -133,7 +133,7 @@ export default function Home() {
                         maxW="xl"
                         fontWeight="bold"
                         textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)"
-                        px={{ base: 4, md: 0 }} // Padding lateral para mobile
+                        px={{ base: 4, md: 0 }}
                     >
                         Com o Page Express, crie um site profissional de maneira rápida e descomplicada, sem precisar de conhecimento técnico.
                     </Text>

@@ -7,25 +7,25 @@ const theme = extendTheme({
     },
     colors: {
         brand: {
-            primary: '#6A1B9A', // Roxo principal
-            secondary: '#F4ECF7', // Roxo claro para elementos secundários
-            background: '#D5D8DC', // Cinza claro suave para o fundo da página
-            whiteBackground: '#fefefe',
-            button: '#8E44AD', // Roxo vibrante para os botões
+            primary: '#6A1B9A', // Main purple
+            secondary: '#F4ECF7', // Light purple for secondary elements
+            background: '#D5D8DC', // Soft light gray for page background
+            whiteBackground: '#fefefe', // White background for specific sections
+            button: '#8E44AD', // Vibrant purple for buttons
         },
         text: {
-            primary: '#333333', // Texto principal em cinza escuro
-            secondary: '#fefefe', // Texto secundário em branco
+            primary: '#333333', // Primary text in dark gray
+            secondary: '#fefefe', // Secondary text in white
         },
         interaction: {
-            purpleHover: '#7D3C98', // Roxo mais escuro para hover em botões
+            purpleHover: '#7D3C98', // Darker purple for button hover states
         },
     },
     styles: {
         global: {
             'html, body': {
-                backgroundColor: 'brand.background', // Define o background global
-                color: 'text.primary', // Define a cor do texto padrão
+                backgroundColor: 'brand.background', // Sets the global background
+                color: 'text.primary', // Sets the default text color
                 minHeight: '100vh',
             },
         },
