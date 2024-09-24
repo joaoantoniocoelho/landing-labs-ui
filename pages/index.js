@@ -14,7 +14,6 @@ import {
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
-    useBreakpointValue
 } from '@chakra-ui/react';
 import { FaCogs, FaPaintBrush, FaRocket, FaCheckCircle } from 'react-icons/fa';
 import Head from 'next/head';
@@ -116,7 +115,12 @@ export default function Home() {
                 bg="brand.primary"
                 pt={16}
             >
-                <VStack spacing={6} textAlign="center" color="text.secondary">
+                <VStack
+                    spacing={6}
+                    textAlign="center"
+                    color="text.secondary"
+                    maxW={{ base: '90%', md: '70%', lg: '50%' }} // Ajuste de largura responsivo
+                >
                     <Heading
                         as="h1"
                         fontSize={{ base: '4xl', md: '6xl', lg: '7xl' }}
@@ -129,6 +133,7 @@ export default function Home() {
                         maxW="xl"
                         fontWeight="bold"
                         textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)"
+                        px={{ base: 4, md: 0 }} // Padding lateral para mobile
                     >
                         Com o Page Express, crie um site profissional de maneira rápida e descomplicada, sem precisar de conhecimento técnico.
                     </Text>
@@ -221,7 +226,7 @@ export default function Home() {
                 <Heading as="h2" size="xl" mb={4} color="text.secondary">
                     Preço Acessível
                 </Heading>
-                <Text fontSize="2xl" mb={6} color="text.secondary">
+                <Text fontSize="2xl" mb={6} color="text.secondary" px={{ base: 4, md: 0 }}>
                     Apenas <strong>R$99</strong> para colocar seu negócio online.
                 </Text>
                 <Button
