@@ -126,7 +126,7 @@ export default function Home() {
                         fontSize={{ base: '4xl', md: '6xl', lg: '7xl' }}
                         textShadow="2px 2px 8px rgba(0, 0, 0, 0.3)"
                     >
-                        Cre sua Landing Page profissional em minutos
+                        Crie sua Landing Page profissional em minutos
                     </Heading>
                     <Text
                         fontSize="xl"
