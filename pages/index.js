@@ -357,85 +357,70 @@ export default function Home() {
             {/* FAQ Section */}
             <Container id="faq" maxW="container.lg" py={10} px={8}>
                 <Heading as="h2" size="xl" textAlign="center" color="text.primary" mb={8}>
-            Perguntas Frequentes
+                    Perguntas Frequentes
                 </Heading>
-  
+
                 <Accordion allowToggle>
-                    {/* Pergunta 1 */}
                     <AccordionItem>
                         <AccordionButton>
                             <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
-                  Como o Page Express funciona?
+                                Como o Page Express funciona?
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
                         <AccordionPanel pb={4} color="text.primary">
-                O Page Express permite que você crie um site profissional de forma rápida e fácil. Você
-                pode personalizar o conteúdo do seu site (textos, imagens, cores) usando um editor
-                intuitivo. Após a criação, seu site estará online em poucos minutos, sem necessidade de
-                conhecimento técnico.
+                            O Page Express é uma plataforma que permite que você crie um site profissional de forma rápida e fácil. Com nosso editor intuitivo, você pode personalizar todos os aspectos do seu site—textos, imagens, cores e mais—sem necessidade de conhecimento técnico. Em poucos minutos, seu site estará online, ajudando você a estabelecer sua presença digital e alcançar mais clientes.
                         </AccordionPanel>
                     </AccordionItem>
-  
-                    {/* Pergunta 2 */}
+                    
                     <AccordionItem>
                         <AccordionButton>
                             <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
-                  Eu preciso de um subdomínio personalizado?
+                                O que é SEO?
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
                         <AccordionPanel pb={4} color="text.primary">
-                Não é necessário! Usamos uma estrutura de subdiretórios, como pageexpress.io/seunome,
-                para facilitar e otimizar o SEO do seu site. Isso ajuda a consolidar a autoridade do
-                domínio principal e melhora o ranqueamento nos mecanismos de busca. Além disso, não há
-                complicações com a configuração de subdomínios.
+                            SEO, ou Otimização para Motores de Busca, é o processo de melhorar a visibilidade do seu site nos resultados de busca do Google e outros mecanismos de busca. Quanto melhor o SEO do seu site, mais fácil será para os clientes encontrarem você online. O Page Express já inclui as melhores práticas de SEO, como URLs amigáveis, meta tags personalizadas e dados estruturados, o que ajuda a aumentar sua visibilidade e atrair mais tráfego orgânico.
                         </AccordionPanel>
                     </AccordionItem>
-  
-                    {/* Pergunta 3 */}
+                    
                     <AccordionItem>
                         <AccordionButton>
                             <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
-                  Posso usar meu próprio domínio?
+                                Meu site será otimizado para SEO?
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
                         <AccordionPanel pb={4} color="text.primary">
-                Sim! Oferecemos a opção de mapear um domínio próprio para seu site, como
-                seunegocio.com. Dessa forma, seus clientes poderão acessar o site diretamente com o seu
-                domínio personalizado.
+                            Sim! SEO, ou Otimização para Motores de Busca, é essencial para que seu site seja encontrado facilmente no Google e outros mecanismos de busca. O Page Express cria sites otimizados, incluindo meta tags personalizadas, URLs amigáveis e dados estruturados. Isso aumenta a visibilidade do seu negócio online, ajudando a atrair mais visitantes e potenciais clientes.
                         </AccordionPanel>
                     </AccordionItem>
-  
-                    {/* Pergunta 4 */}
+                    
                     <AccordionItem>
                         <AccordionButton>
                             <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
-                  Meu site será otimizado para SEO?
+                                Eu preciso de um subdomínio personalizado?
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
                         <AccordionPanel pb={4} color="text.primary">
-                Sim! Todos os sites criados pelo Page Express são otimizados para motores de busca. Isso
-                inclui meta tags personalizadas, URLs amigáveis e dados estruturados para ajudar seu
-                negócio a ser encontrado online de forma eficaz.
+                            Não, você não precisa de um subdomínio personalizado. Utilizamos uma estrutura de subdiretórios, como <strong>pageexpress.io/seunome</strong>, o que é benéfico para SEO. Isso significa que seu site pode herdar a autoridade do nosso domínio principal, melhorando sua posição nos resultados de busca e facilitando que clientes encontrem seu negócio online. Além disso, elimina a necessidade de configurações técnicas complexas.
                         </AccordionPanel>
                     </AccordionItem>
-  
-                    {/* Pergunta 5 */}
+                
                     <AccordionItem>
                         <AccordionButton>
                             <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
-                  Qual o custo para criar meu site?
+                                Qual o custo para criar meu site?
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
                         <AccordionPanel pb={4} color="text.primary">
-                O custo para criar seu site no Page Express é de R$99, uma taxa única que inclui todas
-                as funcionalidades necessárias para ter seu site online e otimizado.
+                            Por apenas R$99, você pode criar seu site profissional no Page Express. Essa é uma taxa única que inclui todas as funcionalidades necessárias para colocar seu site online e otimizado para os motores de busca. Não há cobranças mensais ou custos ocultos—você paga uma vez e obtém um site completo e funcional.
                         </AccordionPanel>
                     </AccordionItem>
+
                 </Accordion>
             </Container>
   
