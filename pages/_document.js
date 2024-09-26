@@ -11,7 +11,7 @@ export default function Document() {
                 <meta name="keywords" content=" page express, criação de páginas, páginas personalizadas, landing pages, site profissional, criar site fácil, presença digital, SEO para pequenos negócios, criar páginas para negócios, soluções digitais, criar páginas rápidas, plataforma de criação de sites, site para autônomos, site para profissionais liberais" />
                 <meta name="author" content="Page Express" />
                 <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="https://pageexpress.io/" />
+                <link rel="canonical" href="https://pageexpress.io" />
 
                 {/* Open Graph Meta Tags (para redes sociais) */}
                 <meta property="og:title" content="Page Express - A revolução digital" />
