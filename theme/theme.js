@@ -11,14 +11,14 @@ const theme = extendTheme({
             secondary: '#E0F7FA', // Azul claro suave
             background: '#FEFEFE', // Fundo branco
             whiteBackground: '#FFFFFF', // Branco puro para seções específicas
-            button: '#2ECC71', // Verde esmeralda para os botões
+            button: '#28A745', // Verde esmeralda para os botões
         },
         text: {
             primary: '#212121', // Texto primário em cinza escuro
             secondary: '#FFFFFF', // Texto secundário em branco
         },
         interaction: {
-            hover: '#27AE60', // Um verde escuro suave para o hover nos botões
+            hover: '#24963E', // Um verde escuro suave para o hover nos botões
         },
     },
     styles: {
