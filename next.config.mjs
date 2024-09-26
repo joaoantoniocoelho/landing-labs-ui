@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
-  
+
     async rewrites() {
         return [
             {
@@ -14,15 +14,14 @@ const nextConfig = {
             },
         ];
     },
-  
+
     images: {
-        domains: ['https://page-express-ui.vercel.app'],
+        domains: ['pageexpress.io'],
     },
-  
+
     compress: true,
-  
+
     swcMinify: true,
 };
-  
+
 export default nextConfig;
-  

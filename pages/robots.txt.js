@@ -2,13 +2,13 @@ export async function getServerSideProps({ res }) {
     const baseUrl = 'https://pageexpress.io';
   
     const robotsTxt = `
-      User-agent: *
-      Disallow:
-      Sitemap: ${baseUrl}/sitemap.xml
-    `;
-  
+User-agent: *
+Disallow:
+Sitemap: ${baseUrl}/sitemap.xml
+`;
+
     res.setHeader('Content-Type', 'text/plain');
-    res.write(robotsTxt);
+    res.write(robotsTxt.trim()); // Use trim() para remover espaços extras
     res.end();
   
     return {
@@ -17,5 +17,5 @@ export async function getServerSideProps({ res }) {
 }
   
 export default function Robots() {
-    return null; // Não é necessário renderizar nada na página
+    return null; // Não renderiza nada
 }
