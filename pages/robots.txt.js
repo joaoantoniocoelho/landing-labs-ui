@@ -17,6 +17,5 @@ export async function getServerSideProps({ res }) {
 }
   
 export default function Robots() {
-    return null;
+    return null; // Não é necessário renderizar nada na página
 }
-  
