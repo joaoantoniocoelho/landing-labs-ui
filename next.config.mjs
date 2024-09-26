@@ -2,6 +2,14 @@
 const nextConfig = {
     reactStrictMode: true,
 
+    images: {
+        domains: ['page-express-ui.vercel.app'], // Remova https://
+    },
+
+    compress: true,
+
+    swcMinify: true,
+
     async rewrites() {
         return [
             {
@@ -14,14 +22,6 @@ const nextConfig = {
             },
         ];
     },
-
-    images: {
-        domains: ['pageexpress.io'],
-    },
-
-    compress: true,
-
-    swcMinify: true,
 };
 
 export default nextConfig;
