@@ -14,33 +14,47 @@ import {
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
+    IconButton,
+    Drawer,
+    DrawerBody,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton,
+    useBreakpointValue,
+    useDisclosure,
 } from '@chakra-ui/react';
-import { FaCogs, FaPaintBrush, FaRocket, FaCheckCircle, FaHeart } from 'react-icons/fa';
+import {
+    FaCogs,
+    FaPaintBrush,
+    FaRocket,
+    FaHome,
+    FaTag,
+    FaInfoCircle,
+    FaQuestionCircle,
+    FaWallet,
+    FaHandsHelping
+} from 'react-icons/fa';
+import { HamburgerIcon } from '@chakra-ui/icons';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 export default function Home() {
     const router = useRouter();
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const isMobile = useBreakpointValue({ base: true, md: false });
 
     return (
         <>
             <Head>
-                <title>Page Express - Crie Seu Site em Minutos</title>
+                <title>Page Express - Crie Páginas Personalizadas e Otimizadas para SEO</title>
                 <meta
                     name="description"
-                    content="Com o Page Express, você cria um site profissional para o seu negócio de forma rápida e fácil, sem precisar de conhecimento técnico."
+                    content="Com o Page Express, você cria páginas personalizadas, profissionais e otimizadas para SEO, ideais para negócios, freelancers e qualquer um que deseja uma presença digital forte."
                 />
                 <meta
                     name="keywords"
-                    content="criação de sites, site profissional, presença online, pequenos negócios, site fácil"
+                    content="criação de páginas, páginas personalizadas, landing pages, site profissional, presença digital, SEO, pequenos negócios, criar páginas, soluções digitais"
                 />
-                <meta property="og:title" content="Page Express - Crie Seu Site em Minutos" />
-                <meta
-                    property="og:description"
-                    content="Com o Page Express, você cria um site profissional para o seu negócio de forma rápida e fácil, sem precisar de conhecimento técnico."
-                />
-                <meta property="og:url" content="https://page-express-ui.vercel.app/" />
-                <meta property="og:image" content="/og-image.png" />
             </Head>
 
             {/* Navigation Header */}
@@ -64,43 +78,119 @@ export default function Home() {
                         >
                             Page Express
                         </Heading>
-                        <HStack as="nav" spacing={6}>
-                            <Link
-                                href="#inicio"
-                                color="text.primary"
-                                _hover={{ textDecoration: 'none', color: 'brand.primary' }}
-                            >
-                                Início
-                            </Link>
-                            <Link
-                                href="#funcionalidades"
-                                color="text.primary"
-                                _hover={{ textDecoration: 'none', color: 'brand.primary' }}
-                            >
-                                Funcionalidades
-                            </Link>
-                            <Link
-                                href="#preco"
-                                color="text.primary"
-                                _hover={{ textDecoration: 'none', color: 'brand.primary' }}
-                            >
-                                Preço
-                            </Link>
-                            <Link
-                                href="#beneficios"
-                                color="text.primary"
-                                _hover={{ textDecoration: 'none', color: 'brand.primary' }}
-                            >
-                                Benefícios
-                            </Link>
-                            <Link
-                                href="#faq"
-                                color="text.primary"
-                                _hover={{ textDecoration: 'none', color: 'brand.primary' }}
-                            >
-                                FAQ
-                            </Link>
-                        </HStack>
+
+                        {isMobile ? (
+                            <>
+                                <IconButton
+                                    icon={<HamburgerIcon />}
+                                    aria-label="Open Menu"
+                                    onClick={onOpen}
+                                    color="black"
+                                    variant="unstyled"
+                                />
+
+                                {/* Drawer para dispositivos móveis */}
+                                <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+                                    <DrawerOverlay>
+                                        <DrawerContent bg="brand.primary" color="text.secondary">
+                                            <DrawerCloseButton color="text.secondary" />
+                                            <DrawerBody mt={12}>
+                                                <VStack spacing={6} align="flex-start">
+                                                    <HStack as="nav" spacing={4} onClick={onClose}>
+                                                        <Icon as={FaHome} boxSize={5} />
+                                                        <Link
+                                                            href="#inicio"
+                                                            color="text.secondary"
+                                                            _hover={{ color: 'brand.secondary' }}
+                                                        >
+                                                            Início
+                                                        </Link>
+                                                    </HStack>
+                                                    <HStack as="nav" spacing={4} onClick={onClose}>
+                                                        <Icon as={FaPaintBrush} boxSize={5} />
+                                                        <Link
+                                                            href="#funcionalidades"
+                                                            color="text.secondary"
+                                                            _hover={{ color: 'brand.secondary' }}
+                                                        >
+                                                            Funcionalidades
+                                                        </Link>
+                                                    </HStack>
+                                                    <HStack as="nav" spacing={4} onClick={onClose}>
+                                                        <Icon as={FaTag} boxSize={5} />
+                                                        <Link
+                                                            href="#preco"
+                                                            color="text.secondary"
+                                                            _hover={{ color: 'brand.secondary' }}
+                                                        >
+                                                            Preço
+                                                        </Link>
+                                                    </HStack>
+                                                    <HStack as="nav" spacing={4} onClick={onClose}>
+                                                        <Icon as={FaInfoCircle} boxSize={5} />
+                                                        <Link
+                                                            href="#beneficios"
+                                                            color="text.secondary"
+                                                            _hover={{ color: 'brand.secondary' }}
+                                                        >
+                                                            Benefícios
+                                                        </Link>
+                                                    </HStack>
+                                                    <HStack as="nav" spacing={4} onClick={onClose}>
+                                                        <Icon as={FaQuestionCircle} boxSize={5} />
+                                                        <Link
+                                                            href="#faq"
+                                                            color="text.secondary"
+                                                            _hover={{ color: 'brand.secondary' }}
+                                                        >
+                                                            FAQ
+                                                        </Link>
+                                                    </HStack>
+                                                </VStack>
+                                            </DrawerBody>
+                                        </DrawerContent>
+                                    </DrawerOverlay>
+                                </Drawer>
+                            </>
+                        ) : (
+                            <HStack as="nav" spacing={6}>
+                                <Link
+                                    href="#inicio"
+                                    color="text.primary"
+                                    _hover={{ textDecoration: 'none', color: 'brand.primary' }}
+                                >
+                                    Início
+                                </Link>
+                                <Link
+                                    href="#funcionalidades"
+                                    color="text.primary"
+                                    _hover={{ textDecoration: 'none', color: 'brand.primary' }}
+                                >
+                                    Funcionalidades
+                                </Link>
+                                <Link
+                                    href="#preco"
+                                    color="text.primary"
+                                    _hover={{ textDecoration: 'none', color: 'brand.primary' }}
+                                >
+                                    Preço
+                                </Link>
+                                <Link
+                                    href="#beneficios"
+                                    color="text.primary"
+                                    _hover={{ textDecoration: 'none', color: 'brand.primary' }}
+                                >
+                                    Benefícios
+                                </Link>
+                                <Link
+                                    href="#faq"
+                                    color="text.primary"
+                                    _hover={{ textDecoration: 'none', color: 'brand.primary' }}
+                                >
+                                    FAQ
+                                </Link>
+                            </HStack>
+                        )}
                     </HStack>
                 </Container>
             </Box>
@@ -126,7 +216,7 @@ export default function Home() {
                         fontSize={{ base: '4xl', md: '6xl', lg: '7xl' }}
                         textShadow="2px 2px 8px rgba(0, 0, 0, 0.3)"
                     >
-                        Crie sua Landing Page profissional em minutos
+                        Crie Sua Página em Minutos
                     </Heading>
                     <Text
                         fontSize="xl"
@@ -135,7 +225,8 @@ export default function Home() {
                         textShadow="3px 3px 10px rgba(0, 0, 0, 0.5)"
                         px={{ base: 4, md: 0 }}
                     >
-                        Construa páginas profissionais com rapidez e facilidade. Foco em resultados, sem complicação.
+                        Com o Page Express, você cria uma página profissional, otimizada para SEO e sem complicações. Ideal para quem
+                        busca uma presença digital de impacto.
                     </Text>
 
                     <Button
@@ -149,9 +240,11 @@ export default function Home() {
                         bg="brand.button"
                         color="text.secondary"
                         _hover={{
-                            bg: 'interaction.purpleHover',
+                            bg: 'interaction.hover',
+                            transform: 'scale(1.05)',
                         }}
                         shadow="lg"
+                        transition="transform 0.3s ease-in-out"
                     >
                         Comece Agora
                     </Button>
@@ -161,9 +254,9 @@ export default function Home() {
             {/* Features */}
             <Container id="funcionalidades" maxW="container.lg" py={10} px={8}>
                 <Heading as="h2" size="xl" textAlign="center" color="text.primary" h="8rem">
-                    Funcionalidades Principais
+                    Principais Funcionalidades do Page Express
                 </Heading>
-                <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+                <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10} mb={5}>
                     <Box
                         p={6}
                         borderRadius="lg"
@@ -175,8 +268,7 @@ export default function Home() {
                             Personalização Fácil
                         </Heading>
                         <Text mt={4} color="text.primary">
-                            Edite textos, imagens e cores para criar um site que reflita a identidade do seu
-                            negócio.
+                            Edite textos, imagens e cores para criar uma página que reflita sua marca ou projeto.
                         </Text>
                     </Box>
 
@@ -188,11 +280,11 @@ export default function Home() {
                     >
                         <Icon as={FaCogs} w={10} h={10} color="brand.primary" />
                         <Heading as="h3" size="md" color="text.primary" mt={4}>
-                            Otimizado para Busca
+                            Otimização para SEO
                         </Heading>
                         <Text mt={4} color="text.primary">
-                            Seu site será otimizado para aparecer nos resultados de busca, ajudando clientes a
-                            encontrarem você.
+                            Suas páginas são otimizadas para aparecer nos resultados de busca, ajudando você a alcançar mais visitantes
+                            e melhorar sua presença digital.
                         </Text>
                     </Box>
 
@@ -204,30 +296,23 @@ export default function Home() {
                     >
                         <Icon as={FaRocket} w={10} h={10} color="brand.primary" />
                         <Heading as="h3" size="md" color="text.primary" mt={4}>
-                            Publicação Imediata
+                            Publicação Rápida
                         </Heading>
                         <Text mt={4} color="text.primary">
-                            Após o pagamento, seu site estará online em poucos minutos, pronto para receber
-                            visitantes.
+                            Após o pagamento, sua página estará online em minutos, pronta para receber visitas e melhorar sua presença
+                            online.
                         </Text>
                     </Box>
                 </SimpleGrid>
             </Container>
 
             {/* Price section */}
-            <Box
-                id="preco"
-                width="100%"
-                py={10}
-                textAlign="center"
-                bg="brand.primary"
-                boxShadow="lg"
-            >
+            <Box id="preco" width="100%" py={10} textAlign="center" bg="brand.primary" boxShadow="lg">
                 <Heading as="h2" size="xl" mb={4} color="text.secondary">
-                    Preço Acessível
+                    Preço Acessível para Criar Sua Página
                 </Heading>
                 <Text fontSize="2xl" mb={6} color="text.secondary" px={{ base: 4, md: 0 }}>
-                    Apenas <strong>R$99</strong> para colocar seu negócio online.
+                    Apenas <strong>R$89,90</strong> para criar e publicar sua página personalizada com todas as funcionalidades.
                 </Text>
                 <Button
                     size="lg"
@@ -240,15 +325,16 @@ export default function Home() {
                     bg="brand.button"
                     color="text.secondary"
                     _hover={{
-                        bg: 'interaction.purpleHover',
+                        bg: 'interaction.hover',
+                        transform: 'scale(1.05)',
                     }}
                     shadow="lg"
+                    transition="transform 0.3s ease-in-out"
                 >
-                    Quero Meu Site
+                    Quero Minha Página
                 </Button>
             </Box>
 
-            {/* Benefits */}
             <Container id="beneficios" maxW="container.lg" py={10} px={8} textAlign="center">
                 <Heading as="h2" size="xl" mb={8} color="text.primary" h="8rem">
                     Por que Escolher o Page Express?
@@ -260,7 +346,7 @@ export default function Home() {
                         boxShadow="lg"
                         bg="brand.background"
                     >
-                        <Icon as={FaCheckCircle} w={10} h={10} color="brand.primary" />
+                        <Icon as={FaHandsHelping} w={10} h={10} color="brand.primary" />
                         <Heading as="h3" size="md" color="text.primary" mt={4}>
                             Simplicidade
                         </Heading>
@@ -275,7 +361,7 @@ export default function Home() {
                         boxShadow="lg"
                         bg="brand.background"
                     >
-                        <Icon as={FaCheckCircle} w={10} h={10} color="brand.primary" />
+                        <Icon as={FaWallet} w={10} h={10} color="brand.primary" />
                         <Heading as="h3" size="md" color="text.primary" mt={4}>
                             Economia
                         </Heading>
@@ -296,15 +382,15 @@ export default function Home() {
                     <AccordionItem>
                         <AccordionButton>
                             <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
-                                Como o Page Express funciona?
+                                Como funciona o Page Express?
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
                         <AccordionPanel pb={4} color="text.primary">
-                            O Page Express é uma plataforma que permite que você crie um site profissional de forma rápida e fácil. Com nosso editor intuitivo, você pode personalizar todos os aspectos do seu site—textos, imagens, cores e mais—sem necessidade de conhecimento técnico. Em poucos minutos, seu site estará online, ajudando você a estabelecer sua presença digital e alcançar mais clientes.
+                            O Page Express é uma plataforma que permite que você crie uma <strong>página personalizada</strong> de forma rápida e fácil. Nosso editor intuitivo permite que você ajuste todos os aspectos da sua página, como <strong>textos</strong>, <strong>imagens</strong> e <strong>cores</strong>, sem necessidade de conhecimento técnico. Em minutos, sua página estará online, ajudando você a fortalecer sua <strong>presença digital</strong> e alcançar mais clientes.
                         </AccordionPanel>
                     </AccordionItem>
-                    
+
                     <AccordionItem>
                         <AccordionButton>
                             <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
@@ -313,22 +399,22 @@ export default function Home() {
                             <AccordionIcon />
                         </AccordionButton>
                         <AccordionPanel pb={4} color="text.primary">
-                            SEO, ou Otimização para Motores de Busca, é o processo de melhorar a visibilidade do seu site nos resultados de busca do Google e outros mecanismos de busca. Quanto melhor o SEO do seu site, mais fácil será para os clientes encontrarem você online. O Page Express já inclui as melhores práticas de SEO, como URLs amigáveis, meta tags personalizadas e dados estruturados, o que ajuda a aumentar sua visibilidade e atrair mais tráfego orgânico.
+                            SEO, ou <strong>Otimização para Motores de Busca</strong>, é o processo de melhorar a visibilidade da sua página nos resultados de busca do Google e outros mecanismos de busca. Quanto melhor o SEO da sua página, mais fácil será para os clientes encontrarem você online. O Page Express já vem com <strong>boas práticas de SEO</strong>, como URLs amigáveis, meta tags personalizadas e dados estruturados, que ajudam a aumentar sua <strong>visibilidade online</strong> e atrair mais tráfego orgânico.
                         </AccordionPanel>
                     </AccordionItem>
-                    
+
                     <AccordionItem>
                         <AccordionButton>
                             <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
-                                Meu site será otimizado para SEO?
+                                Minha página será otimizada para SEO?
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
                         <AccordionPanel pb={4} color="text.primary">
-                            Sim! SEO, ou Otimização para Motores de Busca, é essencial para que seu site seja encontrado facilmente no Google e outros mecanismos de busca. O Page Express cria sites otimizados, incluindo meta tags personalizadas, URLs amigáveis e dados estruturados. Isso aumenta a visibilidade do seu negócio online, ajudando a atrair mais visitantes e potenciais clientes.
+                            Sim! O Page Express cria páginas já otimizadas para SEO. Isso inclui a criação de <strong>meta tags personalizadas</strong>, URLs amigáveis e dados estruturados. Essas otimizações ajudam a melhorar sua posição nos resultados de busca, facilitando que mais pessoas encontrem sua página na internet.
                         </AccordionPanel>
                     </AccordionItem>
-                    
+
                     <AccordionItem>
                         <AccordionButton>
                             <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
@@ -337,19 +423,19 @@ export default function Home() {
                             <AccordionIcon />
                         </AccordionButton>
                         <AccordionPanel pb={4} color="text.primary">
-                            Não, você não precisa de um subdomínio personalizado. Utilizamos uma estrutura de subdiretórios, como <strong>pageexpress.io/seunome</strong>, o que é benéfico para SEO. Isso significa que seu site pode herdar a autoridade do nosso domínio principal, melhorando sua posição nos resultados de busca e facilitando que clientes encontrem seu negócio online. Além disso, elimina a necessidade de configurações técnicas complexas.
+                            Não, você não precisa de um subdomínio personalizado. O Page Express utiliza uma estrutura de subdiretórios, como <strong>pageexpress.io/seunome</strong>, que é vantajosa para SEO. Essa estrutura permite que sua página aproveite a <strong>autoridade do domínio principal</strong>, melhorando sua visibilidade nos motores de busca e facilitando que clientes encontrem sua página online, sem necessidade de configurações complexas.
                         </AccordionPanel>
                     </AccordionItem>
-                
+
                     <AccordionItem>
                         <AccordionButton>
                             <Box flex="1" textAlign="left" fontWeight="bold" color="text.primary">
-                                Qual o custo para criar meu site?
+                                Qual o custo para criar minha página?
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
                         <AccordionPanel pb={4} color="text.primary">
-                            Por apenas R$99, você pode criar seu site profissional no Page Express. Essa é uma taxa única que inclui todas as funcionalidades necessárias para colocar seu site online e otimizado para os motores de busca. Não há cobranças mensais ou custos ocultos—você paga uma vez e obtém um site completo e funcional.
+                            Por apenas <strong>R$89,90</strong>, você pode criar sua página personalizada no Page Express. Essa taxa única inclui todas as funcionalidades necessárias para colocar sua página online e <strong>otimizada para SEO</strong>. Não há cobranças mensais ou custos ocultos — você paga uma vez e obtém uma página completa e funcional, pronta para fortalecer sua presença digital.
                         </AccordionPanel>
                     </AccordionItem>
 

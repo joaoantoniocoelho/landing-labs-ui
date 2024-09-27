@@ -170,14 +170,14 @@ export default function RegisterPage() {
                         </FormControl>
 
                         <Button
-                            bg="brand.primary"
+                            bg="brand.button"
                             color="text.secondary"
                             width="full"
                             mt={4}
                             type="submit"
                             borderRadius="full"
                             isDisabled={!isFormValid}
-                            _hover={{ bg: 'interaction.purpleHover' }}
+                            _hover={{ bg: 'interaction.hover' }}
                         >
                             Cadastrar
                         </Button>
@@ -186,7 +186,7 @@ export default function RegisterPage() {
                             fontSize="sm"
                             color="text.primary"
                             textAlign="center"
-                            _hover={{ color: 'interaction.purpleHover', cursor: 'pointer' }}
+                            _hover={{ color: 'interaction.hover', cursor: 'pointer' }}
                             onClick={() => router.push('/login')}
                         >
                             Já possui conta? Clique para se conectar

@@ -52,7 +52,7 @@ export default function LoginPage() {
 
             localStorage.setItem('authToken', data.token);
             showSuccessToast(data.message);
-            router.push('/');
+            router.push('/dashboard');
         } catch (error) {
             showErrorToast(error.message);
         } finally {
@@ -124,7 +124,7 @@ export default function LoginPage() {
                         </FormControl>
 
                         <Button
-                            bg="brand.primary"
+                            bg="brand.button"
                             color="text.secondary"
                             width="full"
                             mt={4}
@@ -132,7 +132,7 @@ export default function LoginPage() {
                             borderRadius="full"
                             isLoading={isLoading}
                             isDisabled={!isFormValid}
-                            _hover={{ bg: 'interaction.purpleHover' }}
+                            _hover={{ bg: 'interaction.hover' }}
                         >
                             Entrar
                         </Button>
@@ -141,7 +141,7 @@ export default function LoginPage() {
                             fontSize="sm"
                             color="text.primary"
                             textAlign="center"
-                            _hover={{ color: 'interaction.purpleHover', cursor: 'pointer' }}
+                            _hover={{ color: 'interaction.hover', cursor: 'pointer' }}
                             onClick={onOpen}
                         >
                             Esqueceu a senha?
@@ -151,7 +151,7 @@ export default function LoginPage() {
                             fontSize="sm"
                             color="text.primary"
                             textAlign="center"
-                            _hover={{ color: 'interaction.purpleHover', cursor: 'pointer' }}
+                            _hover={{ color: 'interaction.hover', cursor: 'pointer' }}
                             onClick={() => router.push('/register')}
                         >
                             Não possui conta? Clique para se cadastrar
