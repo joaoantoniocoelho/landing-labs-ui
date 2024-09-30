@@ -1,13 +1,20 @@
-export async function getServerSideProps({ res }) {
+export async function getServerSideProps({ req, res }) {
     const baseUrl = 'https://pageexpress.io';
+    
+    const host = req.headers.host;
+    const isDevSubdomain = host.startsWith('dev.');
 
-    const robotsTxt = `
+    const robotsTxt = isDevSubdomain
+        ? `
+User-agent: *
+Disallow: /
+`
+        : `
 User-agent: *
 Disallow:
 Sitemap: ${baseUrl}/sitemap.xml
 `;
 
-    // Definir o cabeçalho para garantir que o cache seja controlado adequadamente
     res.setHeader('Content-Type', 'text/plain');
     res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     res.setHeader('Expires', '0');
@@ -16,7 +23,7 @@ Sitemap: ${baseUrl}/sitemap.xml
     res.end();
 
     return {
-        props: {}, // Sem necessidade de props, pois não há renderização
+        props: {},
     };
 }
 

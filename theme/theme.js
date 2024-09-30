@@ -9,7 +9,7 @@ const theme = extendTheme({
         brand: {
             primary: '#1A73E8', // Azul principal
             secondary: '#E0F7FA', // Azul claro suave
-            background: '#FEFEFE', // Fundo branco
+            background: '#F7F7F7', // Fundo branco
             whiteBackground: '#FFFFFF', // Branco puro para seções específicas
             button: '#28A745', // Verde esmeralda para os botões
         },
