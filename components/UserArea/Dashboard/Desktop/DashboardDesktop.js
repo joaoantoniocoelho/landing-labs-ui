@@ -51,6 +51,7 @@ export default function DashboardDesktop({ user }) {
         duplicateKeyword: ''
     });
 
+    // Function to add a new keyword
     const addKeyword = () => {
         if (newKeyword.trim()) {
             if (metaKeywords.includes(newKeyword)) {
@@ -69,45 +70,48 @@ export default function DashboardDesktop({ user }) {
         }
     };
 
+    // Function to remove a keyword
     const removeKeyword = (index) => {
         setMetaKeywords(metaKeywords.filter((_, i) => i !== index));
     };
 
+    // Validation logic for each step
     const validateStep = () => {
-        if (activeStep === 0) {
-            const errors = {};
-            if (!slug) errors.slug = 'Slug é obrigatório.';
-            if (!title) errors.title = 'Título é obrigatório.';
-            setErrorMessage(errors);
-            return !errors.slug && !errors.title;
-        }
+        const errors = {};
 
         if (activeStep === 1) {
-            const errors = {};
+            if (!slug) errors.slug = 'Slug é obrigatório.';
+            if (!title) errors.title = 'Título é obrigatório.';
+        }
+
+        if (activeStep === 2) {
             if (!metaTitle) errors.metaTitle = 'Meta Title é obrigatório.';
             if (!metaDescription) errors.metaDescription = 'Meta Description é obrigatório.';
             if (metaKeywords.length < 5) errors.metaKeywords = 'Adicione pelo menos 5 palavras-chave.';
-            setErrorMessage(errors);
-            return !errors.metaTitle && !errors.metaDescription && !errors.metaKeywords;
         }
 
-        return true;
+        setErrorMessage(errors);
+        return Object.keys(errors).length === 0; // Returns true if there are no errors
     };
 
+    // Handle "Next" button action
     const handleNext = () => {
         if (validateStep()) {
             setActiveStep((prevStep) => prevStep + 1);
         }
     };
 
+    // Handle "Previous" button action
     const handlePrevious = () => {
         setActiveStep((prevStep) => prevStep - 1);
     };
 
+    // Handle modal opening for page creation
     const handleCreateNewPage = () => {
         onOpenModal();
     };
 
+    // Reset fields when modal is closed or form is reset
     const resetFields = () => {
         setSlug('');
         setTitle('');
@@ -118,15 +122,17 @@ export default function DashboardDesktop({ user }) {
         setActiveStep(0);
     };
 
+    // Determine if the "Next" button should be disabled
     const isNextDisabled =
-        (activeStep === 0 && (!slug || !title)) ||
-        (activeStep === 1 && (!metaTitle || !metaDescription || metaKeywords.length < 5));
+        (activeStep === 1 && (!slug || !title)) ||
+        (activeStep === 2 && (!metaTitle || !metaDescription || metaKeywords.length < 5));
 
+    // Get the reason for the button to be disabled
     const getDisabledReason = () => {
-        if (activeStep === 0) {
+        if (activeStep === 1) {
             if (!slug) return 'Slug é obrigatório.';
             if (!title) return 'Título é obrigatório.';
-        } else if (activeStep === 1) {
+        } else if (activeStep === 2) {
             if (!metaTitle) return 'Meta Title é obrigatório.';
             if (!metaDescription) return 'Meta Description é obrigatório.';
             if (metaKeywords.length < 5) return 'Pelo menos 5 palavras-chave são necessárias.';
@@ -138,6 +144,13 @@ export default function DashboardDesktop({ user }) {
         resetFields();
         onCloseModal();
     };
+
+    // Function to get first name from user's full name
+    const getFirstName = (fullName) => {
+        return fullName.split(' ')[0];
+    };
+
+    const userFirstName = getFirstName(user.name);
 
     return (
         <Flex minHeight="100vh">
@@ -157,8 +170,7 @@ export default function DashboardDesktop({ user }) {
                 p={8}
             >
                 <Heading as="h1" size="xl" color="text.primary" mb={8} ml={0} lineHeight="shorter">
-                    Bem-vindo,<br />
-                    {user.name}!
+                    Bem-vindo, {userFirstName}!
                 </Heading>
 
                 <HStack justifyContent="space-between" mb={6} alignItems="center">

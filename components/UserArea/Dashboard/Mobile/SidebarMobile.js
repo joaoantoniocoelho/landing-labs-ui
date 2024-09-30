@@ -12,15 +12,9 @@ import {
 import { FaHome, FaUser, FaSignOutAlt } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 
-export default function SidebarMobile({ isOpen, onClose }) {
+export default function SidebarMobile({ isOpen, onClose, handleLogout }) {
     const router = useRouter();
-
-    const handleLogout = () => {
-        localStorage.removeItem('authToken');
-        router.push('/login');
-        onClose();
-    };
-
+    
     return (
         <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
             <DrawerOverlay>

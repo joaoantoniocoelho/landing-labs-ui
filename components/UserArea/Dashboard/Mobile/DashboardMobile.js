@@ -64,7 +64,7 @@ export default function DashboardMobile({ user }) {
     };
 
     const validateStep = () => {
-        if (activeStep === 0) {
+        if (activeStep === 1) {
             const errors = {};
             if (!slug) errors.slug = 'Slug é obrigatório.';
             if (!title) errors.title = 'Título é obrigatório.';
@@ -72,7 +72,7 @@ export default function DashboardMobile({ user }) {
             return !errors.slug && !errors.title;
         }
 
-        if (activeStep === 1) {
+        if (activeStep === 2) {
             const errors = {};
             if (!metaTitle) errors.metaTitle = 'Meta Title é obrigatório.';
             if (!metaDescription) errors.metaDescription = 'Meta Description é obrigatório.';
@@ -110,20 +110,26 @@ export default function DashboardMobile({ user }) {
     };
 
     const isNextDisabled =
-        (activeStep === 0 && (!slug || !title)) ||
-        (activeStep === 1 && (!metaTitle || !metaDescription || metaKeywords.length < 5));
+        (activeStep === 1 && (!slug || !title)) ||
+        (activeStep === 2 && (!metaTitle || !metaDescription || metaKeywords.length < 5));
 
     const getDisabledReason = () => {
-        if (activeStep === 0) {
+        if (activeStep === 1) {
             if (!slug) return 'Slug é obrigatório.';
             if (!title) return 'Título é obrigatório.';
-        } else if (activeStep === 1) {
+        } else if (activeStep === 2) {
             if (!metaTitle) return 'Meta Title é obrigatório.';
             if (!metaDescription) return 'Meta Description é obrigatório.';
             if (metaKeywords.length < 5) return 'Pelo menos 5 palavras-chave são necessárias.';
         }
         return '';
     };
+
+    const getFirstName = (fullName) => {
+        return fullName.split(' ')[0];
+    };
+
+    const userFirstName = getFirstName(user.name);
 
     return (
         <>
@@ -159,7 +165,7 @@ export default function DashboardMobile({ user }) {
             </Box>
 
             {/* Sidebar Drawer Mobile */}
-            <SidebarDrawerMobile isOpen={isOpen} onClose={onClose} />
+            <SidebarDrawerMobile isOpen={isOpen} onClose={onClose} handleLogout={onOpenLogout}/>
 
             {/* Conteúdo do Dashboard Mobile */}
             <Box
@@ -171,9 +177,8 @@ export default function DashboardMobile({ user }) {
             >
                 <Container maxW="container.sm">
                     {/* Título da página personalizado com o nome do usuário */}
-                    <Heading as="h1" size="xl" color="text.primary" mb={8} ml={0} lineHeight="shorter">
-                        Bem-vindo,<br />
-                        {user.name}!
+                    <Heading as="h1" size="xl" color="text.primary" mt={8} mb={8} ml={0} lineHeight="shorter">
+                        Bem-vindo, {userFirstName}!
                     </Heading>
 
                     <Button
@@ -189,6 +194,9 @@ export default function DashboardMobile({ user }) {
                         Criar Nova Página
                     </Button>
 
+                    <Heading as="h2" size="lg" color="text.primary" ml={0}>
+                        Suas Páginas
+                    </Heading>
                     {/* Lista de Páginas */}
                     <PageList onDelete={(page) => { setPageToDelete(page); onOpenDelete(); }} />
 
