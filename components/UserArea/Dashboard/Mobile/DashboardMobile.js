@@ -3,25 +3,19 @@ import {
     Heading,
     HStack,
     IconButton,
-    Drawer,
-    DrawerBody,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton,
-    VStack,
-    Link,
-    useDisclosure,
     Container,
     Button,
+    useDisclosure,
 } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
-import PageList from './PageList';
-  
-export default function DashboardMobile() {
+import SidebarDrawerMobile from './SidebarMobile';
+import PageList from '../UserPagesList';
+
+export default function DashboardMobile({ user }) {
     const router = useRouter();
     const { isOpen, onOpen, onClose } = useDisclosure();
-  
+
     return (
         <>
             {/* Header com menu hamburger */}
@@ -43,7 +37,7 @@ export default function DashboardMobile() {
                             cursor="pointer"
                             onClick={() => router.push('/')}
                         >
-                Page Express
+                            Page Express
                         </Heading>
                         <IconButton
                             icon={<HamburgerIcon />}
@@ -54,38 +48,24 @@ export default function DashboardMobile() {
                     </HStack>
                 </Container>
             </Box>
-  
-            {/* Sidebar Drawer */}
-            <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
-                <DrawerOverlay>
-                    <DrawerContent bg="brand.primary" color="text.secondary">
-                        <DrawerCloseButton color="text.secondary" />
-                        <DrawerBody mt={8}>
-                            <VStack spacing={8} align="flex-start">
-                                <Link onClick={() => { router.push('/dashboard'); onClose(); }} color="text.secondary">
-                    Dashboard
-                                </Link>
-                                <Link onClick={() => { router.push('/account'); onClose(); }} color="text.secondary">
-                    Conta
-                                </Link>
-                                <Link onClick={() => { router.push('/settings'); onClose(); }} color="text.secondary">
-                    Configurações
-                                </Link>
-                                <Link onClick={() => { router.push('/logout'); onClose(); }} color="text.secondary">
-                    Logout
-                                </Link>
-                            </VStack>
-                        </DrawerBody>
-                    </DrawerContent>
-                </DrawerOverlay>
-            </Drawer>
-  
+
+            {/* Sidebar Drawer Mobile */}
+            <SidebarDrawerMobile isOpen={isOpen} onClose={onClose} />
+
             {/* Conteúdo do Dashboard Mobile */}
-            <Box pt={20} minH="100vh" bg="brand.background" px={6}>
-                <Container maxW="container.lg">
-                    <Heading as="h2" size="lg" mb={6} color="text.primary">
-              Suas Páginas
+            <Box
+                pt={20}
+                pb={8}
+                minH="100vh"
+                bg="brand.background"
+                px={4}
+            >
+                <Container maxW="container.sm">
+                    {/* Personalização do título com o nome do usuário */}
+                    <Heading as="h2" size="lg" mb={6} mt={4} color="text.primary">
+                        Bem-vindo, {user.name}!
                     </Heading>
+
                     <Button
                         bg="brand.button"
                         color="text.secondary"
@@ -94,14 +74,15 @@ export default function DashboardMobile() {
                         _hover={{ bg: 'interaction.hover' }}
                         mb={6}
                         onClick={() => router.push('/create-page')}
+                        width="100%"
                     >
-              Criar Nova Página
+                        Criar Nova Página
                     </Button>
-  
+
+                    {/* Lista de Páginas */}
                     <PageList />
                 </Container>
             </Box>
         </>
     );
 }
-  
