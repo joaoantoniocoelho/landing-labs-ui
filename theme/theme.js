@@ -21,6 +21,22 @@ const theme = extendTheme({
             hover: '#24963E', // Um verde escuro suave para o hover nos botões
         },
     },
+    components: {
+        Stepper: {
+            baseStyle: {
+                stepIcon: {
+                    bg: 'brand.primary', // Ícone de etapas concluídas com a cor brand.primary
+                    borderColor: 'brand.primary', // Cor da borda das etapas
+                },
+                stepNumber: {
+                    color: 'brand.primary', // Cor do número das etapas incompletas
+                },
+                stepSeparator: {
+                    borderColor: 'brand.primary', // Cor da linha separadora
+                },
+            },
+        },
+    },
     styles: {
         global: {
             'html, body': {

@@ -5,18 +5,16 @@ import {
     Button,
     HStack,
     useDisclosure,
-    AlertDialog,
-    AlertDialogBody,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogContent,
-    AlertDialogOverlay,
-    Tooltip
+    Tooltip,
+    useSteps,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useState, useRef } from 'react';
 import PageList from '../UserPagesList';
 import Sidebar from './SidebarDesktop';
+import DeletePageModal from '../DeletePageModal';
+import LogoutConfirmationModal from '../LogoutConfirmationModal';
+import PageCreationModal from '../PageCreationModal';
 
 export default function DashboardDesktop({ user }) {
     const router = useRouter();
@@ -24,45 +22,131 @@ export default function DashboardDesktop({ user }) {
     const [pageToDelete, setPageToDelete] = useState(null);
     const { isOpen: isOpenDelete, onOpen: onOpenDelete, onClose: onCloseDelete } = useDisclosure();
     const { isOpen: isOpenLogout, onOpen: onOpenLogout, onClose: onCloseLogout } = useDisclosure();
-    const cancelRef = useRef(); 
+    const { isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal } = useDisclosure();
+    const cancelRef = useRef();
 
-    const toggleSidebar = () => {
-        setIsSidebarCollapsed(!isSidebarCollapsed);
+    // Stepper config
+    const steps = [
+        { title: 'Primeiro', description: 'Slug e Título' },
+        { title: 'Segundo', description: 'Meta Tags' },
+        { title: 'Terceiro', description: 'Confirmação' }
+    ];
+    const { activeStep, setActiveStep } = useSteps({
+        index: 0,
+        count: steps.length,
+    });
+
+    const [slug, setSlug] = useState('');
+    const [title, setTitle] = useState('');
+    const [metaTitle, setMetaTitle] = useState('');
+    const [metaDescription, setMetaDescription] = useState('');
+    const [metaKeywords, setMetaKeywords] = useState([]);
+    const [newKeyword, setNewKeyword] = useState('');
+    const [errorMessage, setErrorMessage] = useState({
+        slug: '',
+        title: '',
+        metaTitle: '',
+        metaDescription: '',
+        metaKeywords: '',
+        duplicateKeyword: ''
+    });
+
+    const addKeyword = () => {
+        if (newKeyword.trim()) {
+            if (metaKeywords.includes(newKeyword)) {
+                setErrorMessage((prev) => ({
+                    ...prev,
+                    duplicateKeyword: 'Esta palavra-chave já foi adicionada.'
+                }));
+            } else {
+                setMetaKeywords([...metaKeywords, newKeyword]);
+                setNewKeyword('');
+                setErrorMessage((prev) => ({
+                    ...prev,
+                    duplicateKeyword: ''
+                }));
+            }
+        }
     };
 
-    const handleLogout = () => {
-        onOpenLogout(); 
+    const removeKeyword = (index) => {
+        setMetaKeywords(metaKeywords.filter((_, i) => i !== index));
+    };
+
+    const validateStep = () => {
+        if (activeStep === 0) {
+            const errors = {};
+            if (!slug) errors.slug = 'Slug é obrigatório.';
+            if (!title) errors.title = 'Título é obrigatório.';
+            setErrorMessage(errors);
+            return !errors.slug && !errors.title;
+        }
+
+        if (activeStep === 1) {
+            const errors = {};
+            if (!metaTitle) errors.metaTitle = 'Meta Title é obrigatório.';
+            if (!metaDescription) errors.metaDescription = 'Meta Description é obrigatório.';
+            if (metaKeywords.length < 5) errors.metaKeywords = 'Adicione pelo menos 5 palavras-chave.';
+            setErrorMessage(errors);
+            return !errors.metaTitle && !errors.metaDescription && !errors.metaKeywords;
+        }
+
+        return true;
+    };
+
+    const handleNext = () => {
+        if (validateStep()) {
+            setActiveStep((prevStep) => prevStep + 1);
+        }
+    };
+
+    const handlePrevious = () => {
+        setActiveStep((prevStep) => prevStep - 1);
     };
 
     const handleCreateNewPage = () => {
-        router.push('/create-page');
+        onOpenModal();
     };
 
-    const handleDelete = (page) => {
-        setPageToDelete(page);
-        onOpenDelete();
+    const resetFields = () => {
+        setSlug('');
+        setTitle('');
+        setMetaTitle('');
+        setMetaDescription('');
+        setMetaKeywords([]);
+        setNewKeyword('');
+        setActiveStep(0);
     };
 
-    const confirmDelete = () => {
-        console.log('Página excluída:', pageToDelete);
-        onCloseDelete(); 
+    const isNextDisabled =
+        (activeStep === 0 && (!slug || !title)) ||
+        (activeStep === 1 && (!metaTitle || !metaDescription || metaKeywords.length < 5));
+
+    const getDisabledReason = () => {
+        if (activeStep === 0) {
+            if (!slug) return 'Slug é obrigatório.';
+            if (!title) return 'Título é obrigatório.';
+        } else if (activeStep === 1) {
+            if (!metaTitle) return 'Meta Title é obrigatório.';
+            if (!metaDescription) return 'Meta Description é obrigatório.';
+            if (metaKeywords.length < 5) return 'Pelo menos 5 palavras-chave são necessárias.';
+        }
+        return '';
     };
 
-    const confirmLogout = () => {
-        localStorage.removeItem('authToken');
-        router.push('/login');
+    const handleModalClose = () => {
+        resetFields();
+        onCloseModal();
     };
 
     return (
         <Flex minHeight="100vh">
-            {/* Sidebar */}
             <Sidebar
                 isSidebarCollapsed={isSidebarCollapsed}
-                toggleSidebar={toggleSidebar}
-                handleLogout={handleLogout} 
+                toggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+                handleLogout={onOpenLogout}
             />
 
-            {/* Conteúdo principal */}
             <Box
                 width={{
                     base: '100%',
@@ -72,14 +156,11 @@ export default function DashboardDesktop({ user }) {
                 bg="brand.background"
                 p={8}
             >
-                {/* Título da página personalizado com o nome do usuário */}
                 <Heading as="h1" size="xl" color="text.primary" mb={8} ml={0} lineHeight="shorter">
                     Bem-vindo,<br />
                     {user.name}!
                 </Heading>
 
-
-                {/* Botão para criar nova página no topo */}
                 <HStack justifyContent="space-between" mb={6} alignItems="center">
                     <Heading as="h2" size="lg" color="text.primary" ml={0}>
                         Suas Páginas
@@ -97,64 +178,35 @@ export default function DashboardDesktop({ user }) {
                     </Tooltip>
                 </HStack>
 
-                {/* Lista de páginas (tabela) */}
-                <PageList onDelete={handleDelete} />
+                <PageList onDelete={(page) => { setPageToDelete(page); onOpenDelete(); }} />
 
-                {/* Modal de confirmação de exclusão */}
-                <AlertDialog
-                    isOpen={isOpenDelete}
-                    leastDestructiveRef={cancelRef}
-                    onClose={onCloseDelete}
-                >
-                    <AlertDialogOverlay>
-                        <AlertDialogContent>
-                            <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                                Excluir Página
-                            </AlertDialogHeader>
+                <PageCreationModal 
+                    isOpenModal={isOpenModal} 
+                    onCloseModal={handleModalClose}
+                    activeStep={activeStep}
+                    handleNext={handleNext}
+                    handlePrevious={handlePrevious}
+                    slug={slug}
+                    setSlug={setSlug}
+                    title={title}
+                    setTitle={setTitle}
+                    metaTitle={metaTitle}
+                    setMetaTitle={setMetaTitle}
+                    metaDescription={metaDescription}
+                    setMetaDescription={setMetaDescription}
+                    metaKeywords={metaKeywords}
+                    newKeyword={newKeyword}
+                    setNewKeyword={setNewKeyword}
+                    addKeyword={addKeyword}
+                    removeKeyword={removeKeyword}
+                    errorMessage={errorMessage}
+                    isNextDisabled={isNextDisabled}
+                    getDisabledReason={getDisabledReason}
+                />
 
-                            <AlertDialogBody>
-                                Tem certeza que deseja excluir a página &quot;{pageToDelete?.title}&quot;? Esta ação não pode ser desfeita.
-                            </AlertDialogBody>
+                <DeletePageModal isOpenDelete={isOpenDelete} cancelRef={cancelRef} onCloseDelete={onCloseDelete} pageToDelete={pageToDelete} />
 
-                            <AlertDialogFooter>
-                                <Button ref={cancelRef} onClick={onCloseDelete}>
-                                    Cancelar
-                                </Button>
-                                <Button colorScheme="red" onClick={confirmDelete} ml={3}>
-                                    Excluir
-                                </Button>
-                            </AlertDialogFooter>
-                        </AlertDialogContent>
-                    </AlertDialogOverlay>
-                </AlertDialog>
-
-                {/* Modal de confirmação de logout */}
-                <AlertDialog
-                    isOpen={isOpenLogout}
-                    leastDestructiveRef={cancelRef}
-                    onClose={onCloseLogout}
-                >
-                    <AlertDialogOverlay>
-                        <AlertDialogContent>
-                            <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                                Sair
-                            </AlertDialogHeader>
-
-                            <AlertDialogBody>
-                                Tem certeza que deseja sair?
-                            </AlertDialogBody>
-
-                            <AlertDialogFooter>
-                                <Button ref={cancelRef} onClick={onCloseLogout}>
-                                    Cancelar
-                                </Button>
-                                <Button colorScheme="red" onClick={confirmLogout} ml={3}>
-                                    Sair
-                                </Button>
-                            </AlertDialogFooter>
-                        </AlertDialogContent>
-                    </AlertDialogOverlay>
-                </AlertDialog>
+                <LogoutConfirmationModal isOpenLogout={isOpenLogout} cancelRef={cancelRef} onCloseLogout={onCloseLogout} router={router} />
             </Box>
         </Flex>
     );
