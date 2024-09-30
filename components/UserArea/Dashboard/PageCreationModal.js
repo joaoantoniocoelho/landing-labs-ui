@@ -12,6 +12,8 @@ import {
     FormControl,
     FormLabel,
     Input,
+    InputGroup,
+    InputRightElement,
     Tag,
     TagLabel,
     TagCloseButton,
@@ -27,7 +29,7 @@ import {
     Wrap,
     Stepper
 } from '@chakra-ui/react';
-import { CheckIcon, ArrowForwardIcon, ArrowBackIcon } from '@chakra-ui/icons';
+import { CheckIcon, ArrowForwardIcon, ArrowBackIcon, InfoOutlineIcon } from '@chakra-ui/icons';
 
 export default function PageCreationModal({
     isOpenModal,
@@ -53,7 +55,7 @@ export default function PageCreationModal({
     getDisabledReason,
 }) {
     const steps = [
-        { title: 'Introdução', description: '' }, // Nova etapa de introdução
+        { title: 'Introdução', description: '' },
         { title: 'Primeira Etapa', description: 'Slug e Título' },
         { title: 'Segunda Etapa', description: 'Meta Tags' },
         { title: 'Terceira Etapa', description: 'Confirmação' }
@@ -75,9 +77,9 @@ export default function PageCreationModal({
                         index={activeStep}
                         mb={6}
                         flexDirection={['column', null, 'row']}
-                        spacing={8} // Espaçamento entre os steps
+                        spacing={8}
                         width="100%"
-                        justifyContent="space-between" // Espalhar uniformemente no desktop
+                        justifyContent="space-between"
                     >
                         {steps.map((_, index) => (
                             <Step key={index} width="100%">
@@ -98,7 +100,6 @@ export default function PageCreationModal({
                     </Stepper>
 
                     {activeStep === 0 ? (
-                        // Etapa de introdução: ocupa todo o espaço
                         <Box textAlign="center" p={4}>
                             <Text fontSize="lg" mb={4}>
                                 🎉 Bem-vindo ao assistente de criação de páginas!
@@ -111,7 +112,6 @@ export default function PageCreationModal({
                             </Text>
                         </Box>
                     ) : (
-                        // Etapas normais: divididas em colunas
                         <SimpleGrid columns={[1, null, 5]} spacing={10}>
                             <Box gridColumn={['span 1', null, 'span 2']}>
                                 <Text mb={4}>
@@ -145,12 +145,27 @@ export default function PageCreationModal({
                                     <VStack spacing={4}>
                                         <FormControl isInvalid={errorMessage.slug}>
                                             <FormLabel>Slug</FormLabel>
-                                            <Input value={slug} onChange={(e) => setSlug(e.target.value)} />
+                                            <InputGroup>
+                                                <Input value={slug} onChange={(e) => setSlug(e.target.value)} />
+                                                <InputRightElement>
+                                                    <Tooltip label="O slug aparecerá na URL da página e ajuda a identificar o conteúdo. Exemplo: www.site.com/meu-slug">
+                                                        <InfoOutlineIcon cursor="pointer" color="gray.500" />
+                                                    </Tooltip>
+                                                </InputRightElement>
+                                            </InputGroup>
                                             {errorMessage.slug && <Text color="red.500">{errorMessage.slug}</Text>}
                                         </FormControl>
+
                                         <FormControl isInvalid={errorMessage.title}>
                                             <FormLabel>Título</FormLabel>
-                                            <Input value={title} onChange={(e) => setTitle(e.target.value)} />
+                                            <InputGroup>
+                                                <Input value={title} onChange={(e) => setTitle(e.target.value)} />
+                                                <InputRightElement>
+                                                    <Tooltip label="O título será exibido no topo da página e deve ser claro e objetivo para atrair seus visitantes.">
+                                                        <InfoOutlineIcon cursor="pointer" color="gray.500" />
+                                                    </Tooltip>
+                                                </InputRightElement>
+                                            </InputGroup>
                                             {errorMessage.title && <Text color="red.500">{errorMessage.title}</Text>}
                                         </FormControl>
                                     </VStack>
@@ -160,18 +175,39 @@ export default function PageCreationModal({
                                     <VStack spacing={4}>
                                         <FormControl isInvalid={errorMessage.metaTitle}>
                                             <FormLabel>Meta Título</FormLabel>
-                                            <Input value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
+                                            <InputGroup>
+                                                <Input value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
+                                                <InputRightElement>
+                                                    <Tooltip label="O meta título será exibido nos resultados de busca e deve resumir o conteúdo da página.">
+                                                        <InfoOutlineIcon cursor="pointer" color="gray.500" />
+                                                    </Tooltip>
+                                                </InputRightElement>
+                                            </InputGroup>
                                             {errorMessage.metaTitle && <Text color="red.500">{errorMessage.metaTitle}</Text>}
                                         </FormControl>
                                         <FormControl isInvalid={errorMessage.metaDescription}>
                                             <FormLabel>Meta Descrição</FormLabel>
-                                            <Input value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
+                                            <InputGroup>
+                                                <Input value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
+                                                <InputRightElement>
+                                                    <Tooltip label="A meta descrição aparece nos resultados de busca e deve atrair visitantes ao fornecer um resumo claro e conciso da página.">
+                                                        <InfoOutlineIcon cursor="pointer" color="gray.500" />
+                                                    </Tooltip>
+                                                </InputRightElement>
+                                            </InputGroup>
                                             {errorMessage.metaDescription && <Text color="red.500">{errorMessage.metaDescription}</Text>}
                                         </FormControl>
                                         <FormControl isInvalid={errorMessage.metaKeywords}>
                                             <FormLabel>Palavras-chave</FormLabel>
-                                            <HStack spacing={2}>
-                                                <Input value={newKeyword} onChange={(e) => setNewKeyword(e.target.value)} />
+                                            <HStack>
+                                                <InputGroup>
+                                                    <Input value={newKeyword} onChange={(e) => setNewKeyword(e.target.value)} />
+                                                    <InputRightElement>
+                                                        <Tooltip label="Palavras-chave ajudam a melhorar o SEO e devem ser relevantes ao conteúdo da página.">
+                                                            <InfoOutlineIcon cursor="pointer" color="gray.500" />
+                                                        </Tooltip>
+                                                    </InputRightElement>
+                                                </InputGroup>
                                                 <Button onClick={addKeyword} fontSize="sm" bg="brand.button" color="text.secondary" _hover={{ bg: 'interaction.hover' }}>Adicionar</Button>
                                             </HStack>
                                             {errorMessage.duplicateKeyword && <Text color="red.500">{errorMessage.duplicateKeyword}</Text>}
