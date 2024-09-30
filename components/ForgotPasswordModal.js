@@ -81,7 +81,7 @@ function ForgotPasswordModal({ isOpen, onClose }) {
                         isLoading={isLoading}
                         isDisabled={!isFormValid}
                         color="text.secondary"
-                        bg="brand.button"
+                        bg="brand.primary"
                         _hover={{ bg: 'interaction.greenHover' }}
                     >
                         Enviar
