@@ -66,15 +66,15 @@ export default function PageCreationModal({
     }
 
     return (
-        <Modal isOpen={isOpenModal} onClose={onCloseModal} size="4xl">
+        <Modal isOpen={isOpenModal} onClose={onCloseModal} size={["full", "lg", "4xl"]} isCentered>
             <ModalOverlay />
-            <ModalContent p={6}>
+            <ModalContent p={[4, 6]}>
                 <ModalHeader>Nova Página</ModalHeader>
                 <ModalBody>
-                    <Stepper index={activeStep} mb={6}>
+                    <Stepper index={activeStep} mb={6} flexDirection={["column", null, "row"]} spacing={[4, null, 8]}>
                         {steps.map((step, index) => (
-                            <Step key={index}>
-                                <StepIndicator>
+                            <Step key={index} width="full">
+                                <StepIndicator width={["30px", "40px"]} height={["30px", "40px"]}>
                                     <StepStatus
                                         complete={<Icon as={CheckIcon} color="brand.background" />}
                                         incomplete={<StepNumber />}
@@ -82,45 +82,45 @@ export default function PageCreationModal({
                                     />
                                 </StepIndicator>
 
-                                <Box flexShrink="0">
-                                    <StepTitle>{step.title}</StepTitle>
-                                    <StepDescription>{step.description}</StepDescription>
+                                <Box flexShrink="0" display={["none", "block"]}>
+                                    <StepTitle fontSize={["sm", "md"]}>{step.title}</StepTitle>
+                                    <StepDescription fontSize={["xs", "sm"]}>{step.description}</StepDescription>
                                 </Box>
 
-                                <StepSeparator />
+                                <StepSeparator display={index === steps.length - 1 ? "none" : "block"} />
                             </Step>
                         ))}
                     </Stepper>
 
-                    <SimpleGrid columns={5} spacing={10}>
-                        <Box gridColumn="span 2">
+                    <SimpleGrid columns={[1, null, 5]} spacing={10}>
+                        <Box gridColumn={["span 1", null, "span 2"]}>
                             <Text mb={4}>
                                 {activeStep === 0 && (
                                     <>
-                                        Escolha um <b>slug</b> e um <b>título</b> para sua página. 
-                                        O <b>slug</b> aparecerá na URL da sua página e ajuda os visitantes a identificar seu conteúdo. 
+                                        Escolha um <b>slug</b> e um <b>título</b> para sua página.
+                                        O <b>slug</b> aparecerá na URL da sua página e ajuda os visitantes a identificar seu conteúdo.
                                         O <b>título</b> será exibido no topo da página e deve ser claro e direto.
                                     </>
                                 )}
                                 {activeStep === 1 && (
                                     <>
-                                        As <b>meta tags</b> ajudam os motores de busca como o Google a entender o conteúdo da sua página. 
-                                        O <b>meta título</b> aparecerá nos resultados de busca, e a <b>meta descrição</b> ajuda a atrair visitantes. 
+                                        As <b>meta tags</b> ajudam os motores de busca como o Google a entender o conteúdo da sua página.
+                                        O <b>meta título</b> aparecerá nos resultados de busca, e a <b>meta descrição</b> ajuda a atrair visitantes.
                                         Use palavras-chave relevantes para melhorar o SEO.
                                     </>
                                 )}
                                 {activeStep === 2 && (
                                     <>
-                                        Revise as informações antes de criar sua página. 
+                                        Revise as informações antes de criar sua página.
                                         Certifique-se de que o <b>slug</b>, <b>título</b>, <b>meta título</b>, e <b>meta descrição</b> estão corretos para garantir que sua página seja eficaz e fácil de encontrar nos motores de busca.
                                     </>
                                 )}
                             </Text>
                         </Box>
 
-                        <Box gridColumn="span 1" borderRight="1px solid #E0E0E0" height="100%" />
+                        <Box display={["none", null, "block"]} gridColumn="span 1" borderRight="1px solid #E0E0E0" height="100%" />
 
-                        <Box gridColumn="span 2">
+                        <Box gridColumn={["span 1", null, "span 2"]}>
                             {activeStep === 0 && (
                                 <VStack spacing={4}>
                                     <FormControl isInvalid={errorMessage.slug}>
