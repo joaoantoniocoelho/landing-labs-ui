@@ -28,7 +28,7 @@ const ComingSoon = () => {
         setLoading(true);
 
         try {
-            const response = await registerLead(email);
+            await registerLead(email);
 
             toast({
                 title: 'Sucesso!',
