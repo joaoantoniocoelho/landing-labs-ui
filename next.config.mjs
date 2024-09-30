@@ -3,7 +3,7 @@ const nextConfig = {
     reactStrictMode: true,
 
     images: {
-        domains: ['page-express-ui.vercel.app'], // Remova https://
+        domains: ['pageexpress.io'],
     },
 
     compress: true,
