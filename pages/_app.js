@@ -20,7 +20,7 @@ function App({ Component, pageProps }) {
                 <title>Page Express</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
-            <ProtectedComponent {...pageProps} />
+            <Component {...pageProps} />
         </ChakraProvider>
     );
 }
