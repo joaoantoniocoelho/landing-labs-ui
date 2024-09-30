@@ -1,21 +1,6 @@
-import { useState, useEffect } from 'react';
-import {
-    Box,
-    VStack,
-    Spinner,
-    Flex,
-    Text,
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    IconButton,
-    HStack,
-    Tooltip,
-} from '@chakra-ui/react';
+import { Box, VStack, Spinner, Flex, Text, Table, Thead, Tbody, Tr, Th, Td, IconButton, HStack, Tooltip } from '@chakra-ui/react';
 import { FaEdit, FaEye, FaTrash, FaArrowLeft, FaArrowRight, FaSortUp, FaSortDown } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 
 const getStatusColor = (status) => {
     switch (status) {
@@ -69,7 +54,7 @@ const PageList = ({ onDelete }) => {
                     resolve({ data, totalPages });
                 }, 1000);
             });
-    
+
             setPages(response.data);
             setTotalPages(response.totalPages);
         } catch (error) {
@@ -78,7 +63,6 @@ const PageList = ({ onDelete }) => {
             setLoading(false);
         }
     };
-    
 
     const handleSort = (key) => {
         let direction = 'asc';
@@ -184,7 +168,6 @@ const PageList = ({ onDelete }) => {
                                                     onClick={() => onDelete(page)}
                                                 />
                                             </Tooltip>
-                                            {/* Botão para publicar */}
                                             {page.status === 'draft' && (
                                                 <Tooltip label="Publicar">
                                                     <IconButton
@@ -202,7 +185,6 @@ const PageList = ({ onDelete }) => {
                                             )}
                                         </HStack>
                                     </Td>
-
                                 </Tr>
                             ))}
                         </Tbody>

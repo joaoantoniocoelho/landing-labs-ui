@@ -7,7 +7,7 @@ import {
     VStack,
     HStack,
     Icon,
-    Box,
+    Box
 } from '@chakra-ui/react';
 import { FaHome, FaUser, FaSignOutAlt } from 'react-icons/fa';
 import { useRouter } from 'next/router';
@@ -25,7 +25,7 @@ export default function SidebarMobile({ isOpen, onClose }) {
         <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
             <DrawerOverlay>
                 <DrawerContent bg="brand.primary" color="text.secondary">
-                    <DrawerCloseButton color="text.secondary" />
+                    <DrawerCloseButton color="text.secondary" aria-label="Fechar menu" /> {/* Adicionado aria-label */}
                     <DrawerBody mt={8} display="flex" flexDirection="column" justifyContent="space-between">
                         <VStack spacing={8} align="flex-start">
                             {/* Dashboard Link */}

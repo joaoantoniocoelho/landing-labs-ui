@@ -61,9 +61,10 @@ export default function DashboardMobile({ user }) {
                 px={4}
             >
                 <Container maxW="container.sm">
-                    {/* Personalização do título com o nome do usuário */}
-                    <Heading as="h2" size="lg" mb={6} mt={4} color="text.primary">
-                        Bem-vindo, {user.name}!
+                    {/* Título da página personalizado com o nome do usuário */}
+                    <Heading as="h1" size="xl" color="text.primary" mb={8} ml={0} lineHeight="shorter">
+                    Bem-vindo,<br />
+                        {user.name}!
                     </Heading>
 
                     <Button

@@ -1,11 +1,23 @@
-import { Box, VStack, HStack, Icon, Button, Heading, Tooltip } from '@chakra-ui/react';
-import { FaHome, FaUser, FaChevronLeft, FaChevronRight, FaSignOutAlt } from 'react-icons/fa';
+import {
+    Box,
+    VStack,
+    HStack,
+    Icon,
+    Button,
+    Heading,
+    Tooltip,
+} from '@chakra-ui/react';
 import Link from 'next/link';
+import { FaHome, FaUser, FaChevronLeft, FaChevronRight, FaSignOutAlt } from 'react-icons/fa';
 
 export default function SidebarDesktop({ isSidebarCollapsed, toggleSidebar, handleLogout }) {
     return (
         <Box
-            width={{ base: isSidebarCollapsed ? '12%' : '50%', md: isSidebarCollapsed ? '5%' : '20%', lg: isSidebarCollapsed ? '2%' : '15%' }}
+            width={{
+                base: isSidebarCollapsed ? '12%' : '50%',
+                md: isSidebarCollapsed ? '5%' : '20%',
+                lg: isSidebarCollapsed ? '2%' : '15%'
+            }}
             minWidth={isSidebarCollapsed ? '80px' : 'auto'}
             bg="brand.primary"
             color="text.secondary"
@@ -20,7 +32,7 @@ export default function SidebarDesktop({ isSidebarCollapsed, toggleSidebar, hand
         >
             {/* Nome "Page Express" no topo da Sidebar */}
             {!isSidebarCollapsed && (
-                <Heading as="h1" size="lg" color="text.secondary" mb={8} whiteSpace="nowrap">
+                <Heading as="h1" size="lg" color="text.secondary" mt={5} mb={8} whiteSpace="nowrap">
                     Page Express
                 </Heading>
             )}
@@ -37,6 +49,7 @@ export default function SidebarDesktop({ isSidebarCollapsed, toggleSidebar, hand
                 position={isSidebarCollapsed ? 'relative' : 'absolute'}
                 top={isSidebarCollapsed ? '0' : '4'}
                 right={isSidebarCollapsed ? 'auto' : '4'}
+                aria-label={isSidebarCollapsed ? 'Expandir menu' : 'Recolher menu'} // Adicionado aria-label
             >
                 <Icon as={isSidebarCollapsed ? FaChevronRight : FaChevronLeft} boxSize={4} />
             </Button>
@@ -55,7 +68,7 @@ export default function SidebarDesktop({ isSidebarCollapsed, toggleSidebar, hand
                             whiteSpace={isSidebarCollapsed ? 'nowrap' : 'normal'}
                         >
                             <Icon as={FaHome} boxSize={6} />
-                            {!isSidebarCollapsed && <Box _hover={{ color: '#5A9FFF' }} color="text.secondary">Dashboard</Box>}
+                            {!isSidebarCollapsed && <Box color="text.secondary">Dashboard</Box>}
                         </HStack>
                     </Tooltip>
                 </Link>
@@ -72,7 +85,7 @@ export default function SidebarDesktop({ isSidebarCollapsed, toggleSidebar, hand
                             whiteSpace={isSidebarCollapsed ? 'nowrap' : 'normal'}
                         >
                             <Icon as={FaUser} boxSize={6} />
-                            {!isSidebarCollapsed && <Box _hover={{ color: '#5A9FFF' }} color="text.secondary">Perfil</Box>}
+                            {!isSidebarCollapsed && <Box color="text.secondary">Perfil</Box>}
                         </HStack>
                     </Tooltip>
                 </Link>
@@ -85,7 +98,6 @@ export default function SidebarDesktop({ isSidebarCollapsed, toggleSidebar, hand
                 mt="auto"
                 w="100%"
                 justifyContent={isSidebarCollapsed ? 'center' : 'flex-start'}
-                _hover={{ color: '#5A9FFF' }}
                 transition="all 0.3s ease"
                 p={2}
                 borderRadius="md"

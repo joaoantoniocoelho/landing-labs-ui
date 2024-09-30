@@ -73,9 +73,11 @@ export default function DashboardDesktop({ user }) {
                 p={8}
             >
                 {/* Título da página personalizado com o nome do usuário */}
-                <Heading as="h1" size="xl" color="text.primary" mb={8} ml={0}>
-                    Bem-vindo, {user.name}!
+                <Heading as="h1" size="xl" color="text.primary" mb={8} ml={0} lineHeight="shorter">
+                    Bem-vindo,<br />
+                    {user.name}!
                 </Heading>
+
 
                 {/* Botão para criar nova página no topo */}
                 <HStack justifyContent="space-between" mb={6} alignItems="center">
