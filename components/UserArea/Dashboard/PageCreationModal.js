@@ -53,6 +53,7 @@ export default function PageCreationModal({
     setNewKeyword,
     isNextDisabled,
     getDisabledReason,
+    router
 }) {
     const steps = [
         { title: 'Introdução', description: '' },
@@ -64,6 +65,9 @@ export default function PageCreationModal({
     function handleCreatePage() {
         console.log({ slug, title, metaTitle, metaDescription, metaKeywords });
         onCloseModal();
+
+        router.push('/create-page');
+        
     }
 
     return (

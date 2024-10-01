@@ -214,6 +214,7 @@ export default function DashboardDesktop({ user }) {
                     errorMessage={errorMessage}
                     isNextDisabled={isNextDisabled}
                     getDisabledReason={getDisabledReason}
+                    router={router}
                 />
 
                 <DeletePageModal isOpenDelete={isOpenDelete} cancelRef={cancelRef} onCloseDelete={onCloseDelete} pageToDelete={pageToDelete} />
