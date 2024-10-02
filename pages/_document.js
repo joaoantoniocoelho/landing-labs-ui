@@ -6,7 +6,6 @@ export default function Document() {
             <Head>
                 {/* Meta Tags Básicas */}
                 <meta charSet="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta name="description" content="Crie páginas profissionais e otimizadas para SEO com o Page Express. Fácil, rápido e sem necessidade de conhecimento técnico. Ideal para negócios, autônomos e quem busca uma presença digital eficiente." />
                 <meta name="keywords" content=" page express, criação de páginas, páginas personalizadas, landing pages, site profissional, criar site fácil, presença digital, SEO para pequenos negócios, criar páginas para negócios, soluções digitais, criar páginas rápidas, plataforma de criação de sites, site para autônomos, site para profissionais liberais" />
                 <meta name="author" content="Page Express" />

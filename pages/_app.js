@@ -1,11 +1,10 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import customTheme from '../theme/theme';
 import Head from 'next/head';
-import '../pages/globals.css';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-
 function App({ Component, pageProps }) {
+    
     const router = useRouter();
 
     useEffect(() => {
@@ -14,14 +13,24 @@ function App({ Component, pageProps }) {
         }
     }, [router.pathname]);
 
+    const chakraRoutes = ['/', '/coming-soon', '/dashboard', '/login', '/register'];
+  
+    const isChakraRoute = chakraRoutes.includes(router.pathname) || router.pathname.startsWith('/reset-password');
+
     return (
-        <ChakraProvider theme={customTheme}>
+        <>
             <Head>
                 <title>Page Express</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
-            <Component {...pageProps} />
-        </ChakraProvider>
+            {isChakraRoute ? (
+                <ChakraProvider theme={customTheme}>
+                    <Component {...pageProps} />
+                </ChakraProvider>
+            ) : (
+                <Component {...pageProps} />
+            )}
+        </>
     );
 }
 
